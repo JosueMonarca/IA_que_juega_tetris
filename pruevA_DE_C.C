@@ -20,7 +20,7 @@ int division_entera(int num_1, int num_2){
 
 int main() {
     int i,j,z;
-    int dia,mes,ano_1,ano_2;
+    int dia,ano_1,ano_2;
     Fecha fecha;
 
     printf("Introduzca un número: ");
