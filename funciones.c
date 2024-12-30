@@ -67,11 +67,16 @@ int conv_min_horas(int minutos,int horas, int operacion){
     
 }
 
-void frame( void (*draw)()){
-
+void frame(int ***TABLA){
         system("cls");
-        draw();
+        for (int i = 0; i < 41; i++) {
+        for (int j = 0; j < 21; j++) {
+            if (*TABLA[i][j] == 0)
+                printf(".");  // Vacío
+            else
+                printf("#");  // Bloque
+        }
+        printf("\n");
+    }
 
 }//funciona para actualizar la pantalla
-
-
