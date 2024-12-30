@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "CABECERA.h"
+
 const int FILAS=42;
 const int COLUMNAS=42;
 
@@ -24,10 +25,8 @@ int main() {
             if(j==0||j==COLUMNAS-1){
                 TABLA[i][j]='_';
             }
-        printf("%c",TABLA[i][j]);
-        }
-        printf("\n");
     }
+    frame(&TABLA);
     system("pause");
     return 0;
 }

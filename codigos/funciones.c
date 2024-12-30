@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "CABECERA.h"
 
 typedef char String[100];
 
@@ -27,7 +28,14 @@ int conv_seg_horas(int segundos,int horas, int operacion){
         break;
     }
     
+    
 }
+
+int colicion() {
+        // Dummy implementation, replace with actual logic
+        return 0;
+    }
+    
 
 int conv_seg_min(int segundos,int minutos, int operacion){
     
@@ -67,16 +75,22 @@ int conv_min_horas(int minutos,int horas, int operacion){
     
 }
 
-void frame(int ***TABLA){
-        system("cls");
-        for (int i = 0; i < 41; i++) {
-        for (int j = 0; j < 21; j++) {
-            if (*TABLA[i][j] == 0)
-                printf(".");  // Vacío
-            else
-                printf("#");  // Bloque
+void draw(char ***tabla){
+    int i;
+        int j;
+        for (i=0;i<42;i++){
+            for(j=0;j<42;j++){
+                printf("%c",*tabla[i][j]);
+            }
+            printf("\n");
         }
-        printf("\n");
-    }
+}
 
+void frame(char ***TABLA){
+        system("cls");
+        draw(TABLA);
+        if(colicion()==3){
+            printf("game over");
+        }
 }//funciona para actualizar la pantalla
+
