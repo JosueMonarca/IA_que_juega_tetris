@@ -11,6 +11,10 @@ struct S_fecha {
     int anio;
 };
 
+int tabla[42][42];
+
+
+
 int conv_seg_horas(int segundos,int horas, int operacion){
     
     switch (operacion)
@@ -27,8 +31,6 @@ int conv_seg_horas(int segundos,int horas, int operacion){
     printf("Operacion no valida");//mensaje de errr
         break;
     }
-    
-    
 }
 
 int colicion() {
@@ -72,25 +74,32 @@ int conv_min_horas(int minutos,int horas, int operacion){
     printf("Operacion no valida");//mensaje de error
         break;
     }
-    
 }
 
-void draw(char ***tabla){
-    int i;
-        int j;
-        for (i=0;i<42;i++){
-            for(j=0;j<42;j++){
-                printf("%c",*tabla[i][j]);
+void draw() {
+    // Establecer las coordenadas del cuadrado
+    coordenadas_de_cuadrado(2,2);
+
+    // Recorrer el tablero
+    for (int x = 0; x < 42; x++) {
+        for (int y = 0; y < 42; y++) {
+            // Bordes del tablero
+            if (x == 0 || x == 41 || y == 0 || y == 41) {
+                tabla[x][y] = 1;
+            } else {
+                // Revisar si el punto (i, j) coincide con alguna coordenada del cuadrado
+                tabla[x][y] = 0; // Inicialmente vacío
+                for (int k = 0; k < 4; k++) {
+                    if (x == cuadrado[k][0] && y == cuadrado[k][1]) {
+                        tabla[x][y] = 1; // Parte del cuadrado
+                    }
+                }
             }
-            printf("\n");
+            // Imprimir el contenido del tablero
+            printf("%d", tabla[x][y]);
         }
+        printf("\n");
+    }
 }
-
-void frame(char ***TABLA){
-        system("cls");
-        draw(TABLA);
-        if(colicion()==3){
-            printf("game over");
-        }
-}//funciona para actualizar la pantalla
-
+            
+        

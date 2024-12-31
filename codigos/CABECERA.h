@@ -7,27 +7,12 @@ int conv_seg_min(int segundos,int minutos, int operacion);
 int conv_min_horas(int minutos,int horas, int operacion);
 
 //se define la funcion para recargar la pantalla
-void frame(char ***TABLA);
+void draw();
 
-// se define la constante de el cuadrado
-// Definición de la estructura S_Cuadrado
-struct S_Cuadrado {
-    const char forma[4][4];  // Matriz para representar la forma del cuadrado
-    int x_1, y_1;
-    int x_2, y_2;
-    int x_3, y_3;
-    int x_4, y_4;
-    int x_5, y_5;
-    int x_6, y_6;
-    int x_7, y_7;
-    int x_8, y_8;
-    int x_9, y_9;
-    int x_10, y_10;
-    int x_11, y_11;
-    int x_12, y_12;
-};
+// se define las coordenadas de el cuadrado
+void coordenadas_de_cuadrado (int x, int y);
 
-// Declaración de la instancia de la estructura (cuadrado)
-extern struct S_Cuadrado cuadrado;
+//se define el cuadrado 
+extern int cuadrado[4][2];
 
 #endif // CABECERA_H
