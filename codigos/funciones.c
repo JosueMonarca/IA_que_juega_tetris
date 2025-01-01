@@ -2,42 +2,35 @@
 #include <stdlib.h>
 #include <time.h>
 #include "CABECERA.h"
+#include <windows.h>
 
-typedef char String[100];
-
-struct S_fecha {
-    int dia;
-    int mes;
-    int anio;
-};
-
-int tabla[42][42];
-
-
-
-int conv_seg_horas(int segundos,int horas, int operacion){
-    
-    switch (operacion)
-    {
-    case 1:
-        segundos=horas*60;
-        return segundos;//retorna las horas en segundos
-        break;
-    case 2:
-        horas=segundos/60;
-        return horas;//reetorna los segundos en horas
-        break;
-    default:
-    printf("Operacion no valida");//mensaje de errr
-        break;
+int colision() {
+        if(tabla[cuadrado[2][0]+1][cuadrado[2][1]]=='*'||tabla[cuadrado[3][0]+1][cuadrado[3][1]]=='*'){
+            return 0 ;
+        }
+        else{
+            return 1;
+        }
     }
+    
+
+// Función para mover el cursor a una posición específica
+void mover_cursor(int x, int y) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    COORD posicion;
+    posicion.X = y;
+    posicion.Y = x;
+    SetConsoleCursorPosition(hConsole, posicion);
 }
 
-int colicion() {
-        // Dummy implementation, replace with actual logic
-        return 0;
-    }
-    
+// Función para ocultar el cursor
+void ocultar_cursor() {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_CURSOR_INFO cursorInfo;
+    GetConsoleCursorInfo(hConsole, &cursorInfo);
+    cursorInfo.bVisible = FALSE; // Ocultar el cursor
+    SetConsoleCursorInfo(hConsole, &cursorInfo);
+}
 
 int conv_seg_min(int segundos,int minutos, int operacion){
     
@@ -58,48 +51,40 @@ int conv_seg_min(int segundos,int minutos, int operacion){
     
 }
 
-int conv_min_horas(int minutos,int horas, int operacion){
-    
-    switch (operacion)
+void gravity(){
+    //se mueve el cuadrado hacia abajo
+    if (colision()==1)
     {
-    case 1:
-        minutos=horas*60;
-        return minutos;//retorna las horas en minutos
-        break;
-    case 2:
-        horas=minutos/60;
-        return horas;//retorna los minutos en horas
-        break;
-    default:
-    printf("Operacion no valida");//mensaje de error
-        break;
+    coordenadas_de_cuadrado(cuadrado[0][0]+1,cuadrado[0][1]); 
+    //el primer parametro es la cordenada 'y' y el segundo la cordenada 'x
+    }
+    else{
+        coordenadas_de_cuadrado(cuadrado[0][0],cuadrado[0][1]);
     }
 }
 
 void draw() {
-    // Establecer las coordenadas del cuadrado
-    coordenadas_de_cuadrado(2,2);
-
+    // Se llama a la funcion gravity para determinar la posicion de las figuras
+    gravity();
     // Recorrer el tablero
-    for (int x = 0; x < 42; x++) {
-        for (int y = 0; y < 42; y++) {
+    for (int x = 0; x < 22; x++) {
+        for (int y = 0; y < 22; y++) {
             // Bordes del tablero
-            if (x == 0 || x == 41 || y == 0 || y == 41) {
-                tabla[x][y] = 1;
+            if (x == 0 || x == 21 || y == 0 || y == 21) {
+                tabla[x][y] = '*';//borde del tablero
             } else {
                 // Revisar si el punto (i, j) coincide con alguna coordenada del cuadrado
-                tabla[x][y] = 0; // Inicialmente vacío
+                tabla[x][y] = ' '; // Inicialmente vacío
                 for (int k = 0; k < 4; k++) {
                     if (x == cuadrado[k][0] && y == cuadrado[k][1]) {
-                        tabla[x][y] = 1; // Parte del cuadrado
+                        tabla[x][y] = '#'; // Parte del cuadrado
                     }
                 }
             }
             // Imprimir el contenido del tablero
-            printf("%d", tabla[x][y]);
+            printf("%c", tabla[x][y]);
         }
         printf("\n");
     }
 }
-            
-        
+
