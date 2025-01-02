@@ -99,10 +99,10 @@ void draw() {
                         tabla[x][y] = '#'; // Parte del cuadrado
                     }
                 }
-            }
-            //se imprime obstaculos de prueva
-            if(x==10 && y!=0 && y!=21){
-                tabla[x][y]='#';
+            // }
+            // //se imprime obstaculos de prueva
+            // if(x==10 && y!=0 && y!=21){
+            //     tabla[x][y]='#';
             }
             // Imprimir el contenido del tablero
             printf("%c", tabla[x][y]);
