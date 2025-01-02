@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/repository/ejercicios",
-      "program": "c:/repository/ejercicios/build/Debug/outDebug",
+      "cwd": "c:/repository/ejercicios/codigos",
+      "program": "c:/repository/ejercicios/codigos/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
