@@ -69,5 +69,8 @@
     "**/CVS": true,
     "**/.DS_Store": true,
     "**/Thumbs.db": true
+  },
+  "files.associations": {
+    "pruevA_DE_C.C": "cpp"
   }
 }
