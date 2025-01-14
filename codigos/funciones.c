@@ -71,16 +71,28 @@ int conv_seg_min(int segundos,int minutos, int operacion){
 }
 
 void gravity(){
+    int i;
+    int x;
     //se mueve el cuadrado hacia abajo
     if (colision()==0||colision()==2)
     {
     coordenadas_de_cuadrado(cuadrado[0][0]+1,cuadrado[0][1]); 
     //el primer parametro es la cordenada 'y' y el segundo la cordenada 'x
+    
+    for(i=0;i<22;i++){
+        for(x=0;x<22;x++){
+            if(palo[i][x]==1)
+                {
+                coordenadas_de_el_palo(i+1,x,0);
+                }
+            }
+        }
     }
     else{
         coordenadas_de_cuadrado(cuadrado[0][0],cuadrado[0][1]);
     }
 }
+
 
 void draw() {
     // Se llama a la funcion gravity para determinar la posicion de las figuras
@@ -94,15 +106,17 @@ void draw() {
             } else {
                 // Revisar si el punto (i, j) coincide con alguna coordenada del cuadrado
                 tabla[x][y] = ' '; // Inicialmente vacío
+                
                 for (int k = 0; k < 4; k++) {
                     if (x == cuadrado[k][0] && y == cuadrado[k][1]) {
                         tabla[x][y] = '#'; // Parte del cuadrado
                     }
                 }
-            // }
-            // //se imprime obstaculos de prueva
-            // if(x==10 && y!=0 && y!=21){
-            //     tabla[x][y]='#';
+                
+                // Revisar si el punto (i, j) coincide con alguna coordenada del palo
+                if(palo[x][y]==1){
+                    tabla[x][y] = '#'; // Parte del palo
+                }
             }
             // Imprimir el contenido del tablero
             printf("%c", tabla[x][y]);
