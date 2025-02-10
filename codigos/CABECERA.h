@@ -31,4 +31,22 @@ void mover_cursor(int x, int y);
 //se define la funcion colicion
 int colicion();
 
+
+// Estructura para almacenar punteros a las figuras
+typedef struct Nodo {
+    void* ptr;           // Puntero a la memoria asignada
+    struct Nodo* siguiente; // Puntero al siguiente nodo
+} Nodo;
+
+// Estructura de recolector de basura
+typedef struct {
+    Nodo* head; // Puntero al primer nodo de la lista
+} RecolectorBasura;
+
+// Funciones del recolector de basura
+RecolectorBasura* inicializar_recolector();
+void registrar_puntero(RecolectorBasura* recolector, void* ptr);
+void recolectar_basura(RecolectorBasura* recolector);
+void liberar_recolector(RecolectorBasura* recolector);
+
 #endif // CABECERA_H

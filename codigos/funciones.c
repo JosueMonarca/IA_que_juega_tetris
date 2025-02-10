@@ -5,6 +5,7 @@
 #include "CABECERA.h"
 #include <windows.h>
 
+
 int colision() {
     // Verificar si las posiciones inferiores del cuadrado están en contacto con un borde ('*')
     for (int k = 2; k < 4; k++) { // Solo revisamos la parte inferior del cuadrado
@@ -83,7 +84,9 @@ void gravity(){
         for(x=0;x<22;x++){
             if(palo[i][x]==1)
                 {
-                coordenadas_de_el_palo(i+1,x,0);
+                int y=x+1;
+                coordenadas_de_el_palo(8,y,0);
+                break;
                 }
             }
         }
