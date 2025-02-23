@@ -1,0 +1,14 @@
+# Ignore executable files
+*.exe
+*.out
+*.dll
+*.so
+
+# Ignore editor configuration files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+#ignore  la carpeta de ejecutables
+ejecutable/

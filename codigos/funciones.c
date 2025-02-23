@@ -12,7 +12,7 @@ int colision() {
         int y = cuadrado[k][0] + 1; // Próxima posición en Y
         int x = cuadrado[k][1];     // Posición actual en X
         
-        if (cuadrado[k][1]+1=='*'||cuadrado[k][1]-1=='*'){//se corroboran las coliciones con los bordes
+        if (cuadrado[k][1]+1=='*'||cuadrado[k][1]-1=='*'||cuadrado[k][1]+1=='#'||cuadrado[k][1]-1=='#'){//se corroboran las coliciones con los bordes
             return 2;
         }
         
@@ -74,6 +74,7 @@ int conv_seg_min(int segundos,int minutos, int operacion){
 void gravity(){
     int i;
     int x;
+    int y; // Declare y outside the loop
     //se mueve el cuadrado hacia abajo
     if (colision()==0||colision()==2)
     {
@@ -84,7 +85,7 @@ void gravity(){
         for(x=0;x<22;x++){
             if(palo[i][x]==1)
                 {
-                int y=x+1;
+                y=x+1;
                 coordenadas_de_el_palo(8,y,0);
                 break;
                 }
