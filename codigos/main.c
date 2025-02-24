@@ -12,9 +12,15 @@ int main() {
     ocultar_cursor();//se oculta el cursor
     coordenadas_de_cuadrado(1,3);//se iniciazalizan las cordenadas del cuadrado
     registrar_puntero(recolector, cuadrado);
-
-    coordenadas_de_el_palo(3,5,0);//se inicializan las cordenadas del palo
     registrar_puntero(recolector, palo);
+    registrar_puntero(recolector,tabla);
+    registrar_puntero(recolector, u);
+    registrar_puntero(recolector, l);
+    registrar_puntero(recolector, t);
+    coordenadas_de_palo(1,14,0);//se inicializan las cordenadas del palo
+    coordenadas_de_u(1,7,1);//se inicializan las cordenadas de la U
+    coordenadas_de_L(1,11,0);//se inicializan las cordenadas de la L
+    coordenadas_de_t(1,18,0);//se inicializan las cordenadas de la T
 
     for(int i=0;i<25;i++){
         mover_cursor(0, 0);

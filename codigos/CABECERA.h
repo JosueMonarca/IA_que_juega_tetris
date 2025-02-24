@@ -10,14 +10,32 @@ void draw();
 // se define las coordenadas de el cuadrado
 void coordenadas_de_cuadrado (int x, int y);
 
-//se definen la funcion para las coordenadas de el palo
-void coordenadas_de_el_palo(int x, int y, int rotacion);
-
 //se define el cuadrado 
 extern int cuadrado[4][2];
 
-//se define la estructura para la figura palo
-extern int palo[22][22];
+//se define el palo
+extern int palo[4][2];
+
+//se define la u
+extern int u[5][2];
+
+//se define a "l"
+extern int l[5][2];
+
+//se define a "t"
+extern int t[4][2];
+
+//se define Las coordenadas de la T
+void coordenadas_de_t(int y, int x, int rotacion);
+
+//se define las coordenadas de la L
+void coordenadas_de_L(int y, int x, int rotacion);
+
+//se define las ccordenadas de la L
+void coordenadas_de_u (int y, int x, int rotacion);
+
+//se define las coordenadas del palo
+void coordenadas_de_palo (int y, int x, int rotacion);
 
 //se define la tabla
 extern char tabla[22][22];
