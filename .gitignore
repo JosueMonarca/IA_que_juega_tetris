@@ -11,4 +11,5 @@
 *.sublime-workspace
 
 #ignore  la carpeta de ejecutables
-ejecutable/*
+ejecutable/*.exe
+```
