@@ -271,3 +271,73 @@ void coordenadas_de_t(int y, int x, int rotacion){
     }
 }
 //se termina la estructura de t
+
+//se crea la estructura de la z
+int z[4][2];
+
+void coordenadas_de_z(int y, int x, int rotacion){
+    if(rotacion==0){
+    //primer cuadrante
+    z[0][0]=y;//cordenada y
+    z[0][1]=x;//cordenada x
+    //segundo cuadrante
+    z[1][0]=y;//cordenada y
+    z[1][1]=x+1;//cordenada x
+    //tercer cuadrante
+    z[2][0]=y+1;//cordenada y
+    z[2][1]=x+1;//cordenada x
+    //cuarto cuadrante
+    z[3][0]=y+1;//cordenada y
+    z[3][1]=x+2;//cordenada x
+    }
+    else{
+    //primer cuadrante
+    z[0][0]=y;//cordenada y
+    z[0][1]=x;//cordenada x
+    //segundo cuadrante
+    z[1][0]=y+1;//cordenada y
+    z[1][1]=x;//cordenada x
+    //tercer cuadrante
+    z[2][0]=y+1;//cordenada y
+    z[2][1]=x-1;//cordenada x
+    //cuarto cuadrante
+    z[3][0]=y+2;//cordenada y
+    z[3][1]=x-1;//cordenada x
+    }
+}
+//se termina la estructura de la z
+
+//se crea la estructura de la s
+int s[4][2];
+
+void coordenadas_de_s(int y, int x, int rotacion){
+    if(rotacion==0){
+    //primer cuadrante
+    s[0][0]=y;//cordenada y
+    s[0][1]=x;//cordenada x
+    //segundo cuadrante
+    s[1][0]=y;//cordenada y
+    s[1][1]=x+1;//cordenada x
+    //tercer cuadrante
+    s[2][0]=y+1;//cordenada y
+    s[2][1]=x;//cordenada x
+    //cuarto cuadrante
+    s[3][0]=y+1;//cordenada y
+    s[3][1]=x-1;//cordenada x
+    }
+    else{
+    //primer cuadrante
+    s[0][0]=y;//cordenada y
+    s[0][1]=x;//cordenada x
+    //segundo cuadrante
+    s[1][0]=y+1;//cordenada y
+    s[1][1]=x;//cordenada x
+    //tercer cuadrante
+    s[2][0]=y+1;//cordenada y
+    s[2][1]=x+1;//cordenada x
+    //cuarto cuadrante
+    s[3][0]=y+2;//cordenada y
+    s[3][1]=x+1;//cordenada x
+    }
+}
+//se termina la estructura de la s
