@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include "CABECERA.h"
 #include <windows.h>
+#include "ENTRADA.H"
 
 
 int colision() {
@@ -80,7 +81,7 @@ void gravity(){
     {
     coordenadas_de_cuadrado(cuadrado[0][0]+1,cuadrado[0][1]); 
     //el primer parametro es la cordenada 'y' y el segundo la cordenada 'x
-
+/*
     //se mueve el palo hacia abajo
     coordenadas_de_palo(palo[0][0]+1,palo[0][1],0);
 
@@ -92,6 +93,7 @@ void gravity(){
 
     //se mueve la T hacia abajo
     coordenadas_de_t(t[0][0]+1,t[0][1],0);
+*/
     }
     else{
         coordenadas_de_cuadrado(cuadrado[0][0],cuadrado[0][1]);
@@ -117,7 +119,7 @@ void draw() {
                         tabla[x][y] = '#'; // Parte del cuadrado
                     }
                 }
-
+/*
                 // Revisar si el punto (i, j) coincide con alguna coordenada del palo
                 for (int k = 0; k < 5; k++) {
                     if (x == palo[k][0] && y == palo[k][1]) {
@@ -145,7 +147,8 @@ void draw() {
                         tabla[x][y] = '#'; // Parte de la T
                     }
                 }
-            }
+*/
+                }
             // Imprimir el contenido del tablero
             printf("%c", tabla[x][y]);
         }

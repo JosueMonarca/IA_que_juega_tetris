@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include "CABECERA.h"
 #include <windows.h>
-
+#include "ENTRADA.H"
 
 int main() {
      // Inicialización
@@ -11,21 +11,23 @@ int main() {
 
     ocultar_cursor();//se oculta el cursor
     coordenadas_de_cuadrado(1,3);//se iniciazalizan las cordenadas del cuadrado
+    //coordenadas_de_palo(1,14,0);//se inicializan las cordenadas del palo
+    //coordenadas_de_u(1,7,1);//se inicializan las cordenadas de la U
+    //coordenadas_de_L(1,11,0);//se inicializan las cordenadas de la L
+    //coordenadas_de_t(1,18,0);//se inicializan las cordenadas de la T
     registrar_puntero(recolector, cuadrado);
-    registrar_puntero(recolector, palo);
-    registrar_puntero(recolector,tabla);
-    registrar_puntero(recolector, u);
-    registrar_puntero(recolector, l);
-    registrar_puntero(recolector, t);
-    coordenadas_de_palo(1,14,0);//se inicializan las cordenadas del palo
-    coordenadas_de_u(1,7,1);//se inicializan las cordenadas de la U
-    coordenadas_de_L(1,11,0);//se inicializan las cordenadas de la L
-    coordenadas_de_t(1,18,0);//se inicializan las cordenadas de la T
+    //registrar_puntero(recolector, palo);
+    //registrar_puntero(recolector,tabla);
+    //registrar_puntero(recolector, u);
+    //registrar_puntero(recolector, l);
+    //registrar_puntero(recolector, t);
+
 
     for(int i=0;i<25;i++){
         mover_cursor(0, 0);
         draw();
-        Sleep(600);
+        mover_figura();
+        Sleep(300);
     }
     //while (game_over()==false);
 

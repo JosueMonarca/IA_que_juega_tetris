@@ -19,6 +19,14 @@ int t[T_SIZE][2];
 int z[Z_SIZE][2];
 int s[S_SIZE][2];
 
+/**
+ * Esta función toma un array de enteros y su tamaño como entrada,
+ * y devuelve la suma de todos los elementos en el array.
+ *
+ * @param arr Un array de enteros.
+ * @param size El número de elementos en el array.
+ * @return La suma de los elementos en el array.
+ */
 void set_coordinates(int shape[][2], int size, int coords[][2]) {
     for (int i = 0; i < size; i++) {
         shape[i][0] = coords[i][0];
