@@ -67,4 +67,6 @@ void registrar_puntero(RecolectorBasura* recolector, void* ptr);
 void recolectar_basura(RecolectorBasura* recolector);
 void liberar_recolector(RecolectorBasura* recolector);
 
+void mover_figura();
+
 #endif // CABECERA_H

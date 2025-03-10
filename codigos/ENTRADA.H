@@ -1,1 +1,0 @@
-void mover_figura();

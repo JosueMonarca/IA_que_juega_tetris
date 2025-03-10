@@ -4,7 +4,6 @@
 #include <stdbool.h>
 #include "CABECERA.h"
 #include <windows.h>
-#include "ENTRADA.H"
 
 
 int colision() {
