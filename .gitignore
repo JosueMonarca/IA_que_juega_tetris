@@ -3,6 +3,7 @@
 *.out
 *.dll
 *.so
+.exe
 
 # Ignore editor configuration files
 .vscode/

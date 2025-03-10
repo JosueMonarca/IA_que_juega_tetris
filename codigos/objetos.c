@@ -1,343 +1,160 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//Se declara la tabla
+#define CUADRADO_SIZE 4
+#define PALO_SIZE 4
+#define U_SIZE 5
+#define L_SIZE 5
+#define T_SIZE 4
+#define Z_SIZE 4
+#define S_SIZE 4
+
 char tabla[22][22];
 
-//Se declara el cuadrado{
-int cuadrado[4][2];
+int cuadrado[CUADRADO_SIZE][2];
+int palo[PALO_SIZE][2];
+int u[U_SIZE][2];
+int l[L_SIZE][2];
+int t[T_SIZE][2];
+int z[Z_SIZE][2];
+int s[S_SIZE][2];
 
-void coordenadas_de_cuadrado (int x, int y){
-    //primer cuadrante
-    cuadrado[0][0]=x;//cordenada y                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-    cuadrado[0][1]=y;//cordenada x
-    //segundo cuadrante
-    cuadrado[1][0]=x+1;//cordenada y
-    cuadrado[1][1]=y;//cordenada x
-    //tercer cuadrante
-    cuadrado[2][0]=x;//cordenada y
-    cuadrado[2][1]=y+1;//cordenada x
-    //cuarto cuadrante
-    cuadrado[3][0]=x+1;//cordenada y
-    cuadrado[3][1]=y+1;//cordenada x
-
-}
-//}se termina le estructura del cuadrado
-
-// Se declara la estructura del palo
-int palo[4][2];
-
-void coordenadas_de_palo (int y, int x, int rotacion){
-    if(rotacion==0){
-    //primer cuadrante
-    palo[0][0]=y;//cordenada y
-    palo[0][1]=x;//cordenada x
-    //segundo cuadrante
-    palo[1][0]=y+1;//cordenada y
-    palo[1][1]=x;//cordenada x
-    //tercer cuadrante
-    palo[2][0]=y+2;//cordenada y
-    palo[2][1]=x;//cordenada x
-    //cuarto cuadrante
-    palo[3][0]=y+3;//cordenada y
-    palo[3][1]=x;//cordenada x
-    }
-    else{
-    //primer cuadrante
-    palo[0][0]=y;//cordenada y  
-    palo[0][1]=x;//cordenada x
-    //segundo cuadrante
-    palo[1][0]=y;//cordenada y
-    palo[1][1]=x+1;//cordenada x
-    //tercer cuadrante
-    palo[2][0]=y;//cordenada y
-    palo[2][1]=x+2;//cordenada x
-    //cuarto cuadrante
-    palo[3][0]=y;//cordenada y
-    palo[3][1]=x+3;//cordenada x
+void set_coordinates(int shape[][2], int size, int coords[][2]) {
+    for (int i = 0; i < size; i++) {
+        shape[i][0] = coords[i][0];
+        shape[i][1] = coords[i][1];
     }
 }
-//se termina la estructura del palo
 
-//se declare la estructura de la u
-int u[5][2];
-
-void coordenadas_de_u (int y, int x, int rotacion){
-    if(rotacion==0){
-    //primer cuadrante
-    u[0][0]=y;//cordenada y
-    u[0][1]=x;//cordenada x
-    //segundo cuadrante
-    u[1][0]=y+1;//cordenada y
-    u[1][1]=x;//cordenada x
-    //tercer cuadrante
-    u[2][0]=y+2;//cordenada y
-    u[2][1]=x;//cordenada x
-    //cuarto cuadrante
-    u[3][0]=y+2;//cordenada y
-    u[3][1]=x+1;//cordenada x
-    //quinto cuadrante
-    u[4][0]=y+2;//cordenada y
-    u[4][1]=x+2;//cordenada x
-    }
-    else if(rotacion==1){
-    //primer cuadrante
-    u[0][0]=y;//cordenada y
-    u[0][1]=x;//cordenada x
-    //segundo cuadrante
-    u[1][0]=y+1;//cordenada y
-    u[1][1]=x;//cordenada x
-    //tercer cuadrante
-    u[2][0]=y+1;//cordenada y
-    u[2][1]=x+1;//cordenada x
-    //cuarto cuadrante
-    u[3][0]=y+1;//cordenada y
-    u[3][1]=x+2;//cordenada x
-    //quinto cuadrante
-    u[4][0]=y;//cordenada y
-    u[4][1]=x+2;//cordenada x
-    }
-    else if(rotacion==2){
-    //primer cuadrante
-    u[0][0]=y;//cordenada y
-    u[0][1]=x;//cordenada x
-    //segundo cuadrante
-    u[1][0]=y;//cordenada y
-    u[1][1]=x+1;//cordenada x
-    //tercer cuadrante
-    u[2][0]=y+1;//cordenada y
-    u[2][1]=x;//cordenada x
-    //cuarto cuadrante
-    u[3][0]=y+2;//cordenada y
-    u[3][1]=x;//cordenada x
-    //quinto cuadrante
-    u[4][0]=y+2;//cordenada y
-    u[4][1]=x+1;//cordenada x
-    }
-    else{
-    //primer cuadrante
-    u[0][0]=y;//cordenada y
-    u[0][1]=x+2;//cordenada x
-    //segundo cuadrante
-    u[1][0]=y+1;//cordenada y
-    u[1][1]=x;//cordenada x
-    //tercer cuadrante
-    u[2][0]=y+1;//cordenada y
-    u[2][1]=x+1;//cordenada x
-    //cuarto cuadrante
-    u[3][0]=y+1;//cordenada y
-    u[3][1]=x+2;//cordenada x
-    //quinto cuadrante
-    u[4][0]=y;//cordenada y
-    u[4][1]=x;//cordenada x
-    }
+void coordenadas_de_cuadrado(int x, int y) {
+    int coords[CUADRADO_SIZE][2] = {
+        {x, y}, {x + 1, y}, {x, y + 1}, {x + 1, y + 1}
+    };
+    set_coordinates(cuadrado, CUADRADO_SIZE, coords);
 }
-//se termina la estructura de la u
 
-//se delara la estructura de la l
-int l[5][2];
-
-void coordenadas_de_L(int y, int x, int rotacion){
-    if(rotacion==0){
-    //primer cuadrante
-    l[0][0]=y;//cordenada y
-    l[0][1]=x;//cordenada x
-    //segundo cuadrante
-    l[1][0]=y+1;//cordenada y
-    l[1][1]=x;//cordenada x
-    //tercer cuadrante
-    l[2][0]=y+2;//cordenada y
-    l[2][1]=x;//cordenada x
-    //cuarto cuadrante
-    l[3][0]=y+3;//cordenada y
-    l[3][1]=x;//cordenada x
-    //quinto cuadrante
-    l[4][0]=y+3;//cordenada y
-    l[4][1]=x-1;//cordenada x
+void coordenadas_de_palo(int y, int x, int rotacion) {
+    int coords[PALO_SIZE][2];
+    if (rotacion == 0) {
+        int temp[PALO_SIZE][2] = {
+            {y, x}, {y + 1, x}, {y + 2, x}, {y + 3, x}
+        };
+        set_coordinates(coords, PALO_SIZE, temp);
+    } else {
+        int temp[PALO_SIZE][2] = {
+            {y, x}, {y, x + 1}, {y, x + 2}, {y, x + 3}
+        };
+        set_coordinates(coords, PALO_SIZE, temp);
     }
-    else if(rotacion==1){
-    //primer cuadrante
-    l[0][0]=y;//cordenada y
-    l[0][1]=x;//cordenada x
-    //segundo cuadrante
-    l[1][0]=y;//cordenada y
-    l[1][1]=x+1;//cordenada x
-    //tercer cuadrante
-    l[2][0]=y;//cordenada y
-    l[2][1]=x+2;//cordenada x
-    //cuarto cuadrante
-    l[3][0]=y;//cordenada y
-    l[3][1]=x+3;//cordenada x
-    //quinto cuadrante
-    l[4][0]=y+1;//cordenada y
-    l[4][1]=x+3;//cordenada x
-    }
-    else if(rotacion==2){
-    //primer cuadrante
-    l[0][0]=y;//cordenada y
-    l[0][1]=x;//cordenada x
-    //segundo cuadrante
-    l[1][0]=y+1;//cordenada y
-    l[1][1]=x;//cordenada x
-    //tercer cuadrante
-    l[2][0]=y+2;//cordenada y
-    l[2][1]=x;//cordenada x
-    //cuarto cuadrante
-    l[3][0]=y+3;//cordenada y
-    l[3][1]=x;//cordenada x
-    //quinto cuadrante
-    l[4][0]=y;//cordenada y
-    l[4][1]=x+1;//cordenada x
-    }
-    else{
-    //primer cuadrante
-    l[0][0]=y;//cordenada y
-    l[0][1]=x;//cordenada x
-    //segundo cuadrante
-    l[1][0]=y;//cordenada y
-    l[1][1]=x+1;//cordenada x
-    //tercer cuadrante
-    l[2][0]=y;//cordenada y
-    l[2][1]=x+2;//cordenada x
-    //cuarto cuadrante
-    l[3][0]=y;//cordenada y
-    l[3][1]=x+3;//cordenada x
-    //quinto cuadrante
-    l[4][0]=y-1;//cordenada y
-    l[4][1]=x;//cordenada x
-    }
+    set_coordinates(palo, PALO_SIZE, coords);
 }
-//se termina la estructura de la l
 
-//se declara la estructura de t
-int t[4][2];
-
-void coordenadas_de_t(int y, int x, int rotacion){
-    if(rotacion==0){
-    //primer cuadrante
-    t[0][0]=y;//cordenada y
-    t[0][1]=x;//cordenada x
-    //segundo cuadrante
-    t[1][0]=y;//cordenada y
-    t[1][1]=x+1;//cordenada x
-    //tercer cuadrante
-    t[2][0]=y;//cordenada y
-    t[2][1]=x+2;//cordenada x
-    //cuarto cuadrante
-    t[3][0]=y+1;//cordenada y
-    t[3][1]=x+1;//cordenada x
+void coordenadas_de_u(int y, int x, int rotacion) {
+    int coords[U_SIZE][2];
+    if (rotacion == 0) {
+        int temp[U_SIZE][2] = {
+            {y, x}, {y + 1, x}, {y + 2, x}, {y + 2, x + 1}, {y + 2, x + 2}
+        };
+        set_coordinates(coords, U_SIZE, temp);
+    } else if (rotacion == 1) {
+        int temp[U_SIZE][2] = {
+            {y, x}, {y + 1, x}, {y + 1, x + 1}, {y + 1, x + 2}, {y, x + 2}
+        };
+        set_coordinates(coords, U_SIZE, temp);
+    } else if (rotacion == 2) {
+        int temp[U_SIZE][2] = {
+            {y, x}, {y, x + 1}, {y + 1, x}, {y + 2, x}, {y + 2, x + 1}
+        };
+        set_coordinates(coords, U_SIZE, temp);
+    } else {
+        int temp[U_SIZE][2] = {
+            {y, x + 2}, {y + 1, x}, {y + 1, x + 1}, {y + 1, x + 2}, {y, x}
+        };
+        set_coordinates(coords, U_SIZE, temp);
     }
-    else if(rotacion==1){
-    //primer cuadrante
-    t[0][0]=y;//cordenada y
-    t[0][1]=x;//cordenada x
-    //segundo cuadrante
-    t[1][0]=y+1;//cordenada y
-    t[1][1]=x;//cordenada x
-    //tercer cuadrante
-    t[2][0]=y+2;//cordenada y
-    t[2][1]=x;//cordenada x
-    //cuarto cuadrante
-    t[3][0]=y+1;//cordenada y
-    t[3][1]=x-1;//cordenada x
-    }
-    else if(rotacion==2){
-    //primer cuadrante
-    t[0][0]=y;//cordenada y
-    t[0][1]=x;//cordenada x
-    //segundo cuadrante
-    t[1][0]=y;//cordenada y
-    t[1][1]=x+1;//cordenada x
-    //tercer cuadrante
-    t[2][0]=y;//cordenada y
-    t[2][1]=x+2;//cordenada x
-    //cuarto cuadrante
-    t[3][0]=y-1;//cordenada y
-    t[3][1]=x+1;//cordenada x
-    }
-    else{
-    //primer cuadrante
-    t[0][0]=y;//cordenada y
-    t[0][1]=x;//cordenada x
-    //segundo cuadrante
-    t[1][0]=y+1;//cordenada y
-    t[1][1]=x;//cordenada x
-    //tercer cuadrante
-    t[2][0]=y+2;//cordenada y
-    t[2][1]=x;//cordenada x
-    //cuarto cuadrante
-    t[3][0]=y+1;//cordenada y
-    t[3][1]=x+1;//cordenada x
-    }
+    set_coordinates(u, U_SIZE, coords);
 }
-//se termina la estructura de t
 
-//se crea la estructura de la z
-int z[4][2];
-
-void coordenadas_de_z(int y, int x, int rotacion){
-    if(rotacion==0){
-    //primer cuadrante
-    z[0][0]=y;//cordenada y
-    z[0][1]=x;//cordenada x
-    //segundo cuadrante
-    z[1][0]=y;//cordenada y
-    z[1][1]=x+1;//cordenada x
-    //tercer cuadrante
-    z[2][0]=y+1;//cordenada y
-    z[2][1]=x+1;//cordenada x
-    //cuarto cuadrante
-    z[3][0]=y+1;//cordenada y
-    z[3][1]=x+2;//cordenada x
+void coordenadas_de_L(int y, int x, int rotacion) {
+    int coords[L_SIZE][2];
+    if (rotacion == 0) {
+        int temp[L_SIZE][2] = {
+            {y, x}, {y + 1, x}, {y + 2, x}, {y + 3, x}, {y + 3, x - 1}
+        };
+        set_coordinates(coords, L_SIZE, temp);
+    } else if (rotacion == 1) {
+        int temp[L_SIZE][2] = {
+            {y, x}, {y, x + 1}, {y, x + 2}, {y, x + 3}, {y + 1, x + 3}
+        };
+        set_coordinates(coords, L_SIZE, temp);
+    } else if (rotacion == 2) {
+        int temp[L_SIZE][2] = {
+            {y, x}, {y + 1, x}, {y + 2, x}, {y + 3, x}, {y, x + 1}
+        };
+        set_coordinates(coords, L_SIZE, temp);
+    } else {
+        int temp[L_SIZE][2] = {
+            {y, x}, {y, x + 1}, {y, x + 2}, {y, x + 3}, {y - 1, x}
+        };
+        set_coordinates(coords, L_SIZE, temp);
     }
-    else{
-    //primer cuadrante
-    z[0][0]=y;//cordenada y
-    z[0][1]=x;//cordenada x
-    //segundo cuadrante
-    z[1][0]=y+1;//cordenada y
-    z[1][1]=x;//cordenada x
-    //tercer cuadrante
-    z[2][0]=y+1;//cordenada y
-    z[2][1]=x-1;//cordenada x
-    //cuarto cuadrante
-    z[3][0]=y+2;//cordenada y
-    z[3][1]=x-1;//cordenada x
-    }
+    set_coordinates(l, L_SIZE, coords);
 }
-//se termina la estructura de la z
 
-//se crea la estructura de la s
-int s[4][2];
-
-void coordenadas_de_s(int y, int x, int rotacion){
-    if(rotacion==0){
-    //primer cuadrante
-    s[0][0]=y;//cordenada y
-    s[0][1]=x;//cordenada x
-    //segundo cuadrante
-    s[1][0]=y;//cordenada y
-    s[1][1]=x+1;//cordenada x
-    //tercer cuadrante
-    s[2][0]=y+1;//cordenada y
-    s[2][1]=x;//cordenada x
-    //cuarto cuadrante
-    s[3][0]=y+1;//cordenada y
-    s[3][1]=x-1;//cordenada x
+void coordenadas_de_t(int y, int x, int rotacion) {
+    int coords[T_SIZE][2];
+    if (rotacion == 0) {
+        int temp[T_SIZE][2] = {
+            {y, x}, {y, x + 1}, {y, x + 2}, {y + 1, x + 1}
+        };
+        set_coordinates(coords, T_SIZE, temp);
+    } else if (rotacion == 1) {
+        int temp[T_SIZE][2] = {
+            {y, x}, {y + 1, x}, {y + 2, x}, {y + 1, x - 1}
+        };
+        set_coordinates(coords, T_SIZE, temp);
+    } else if (rotacion == 2) {
+        int temp[T_SIZE][2] = {
+            {y, x}, {y, x + 1}, {y, x + 2}, {y - 1, x + 1}
+        };
+        set_coordinates(coords, T_SIZE, temp);
+    } else {
+        int temp[T_SIZE][2] = {
+            {y, x}, {y + 1, x}, {y + 2, x}, {y + 1, x + 1}
+        };
+        set_coordinates(coords, T_SIZE, temp);
     }
-    else{
-    //primer cuadrante
-    s[0][0]=y;//cordenada y
-    s[0][1]=x;//cordenada x
-    //segundo cuadrante
-    s[1][0]=y+1;//cordenada y
-    s[1][1]=x;//cordenada x
-    //tercer cuadrante
-    s[2][0]=y+1;//cordenada y
-    s[2][1]=x+1;//cordenada x
-    //cuarto cuadrante
-    s[3][0]=y+2;//cordenada y
-    s[3][1]=x+1;//cordenada x
-    }
+    set_coordinates(t, T_SIZE, coords);
 }
-//se termina la estructura de la s
+
+void coordenadas_de_z(int y, int x, int rotacion) {
+    int coords[Z_SIZE][2];
+    if (rotacion == 0) {
+        int temp[Z_SIZE][2] = {
+            {y, x}, {y, x + 1}, {y + 1, x + 1}, {y + 1, x + 2}
+        };
+        set_coordinates(coords, Z_SIZE, temp);
+    } else {
+        int temp[Z_SIZE][2] = {
+            {y, x}, {y + 1, x}, {y + 1, x - 1}, {y + 2, x - 1}
+        };
+        set_coordinates(coords, Z_SIZE, temp);
+    }
+    set_coordinates(z, Z_SIZE, coords);
+}
+
+void coordenadas_de_s(int y, int x, int rotacion) {
+    int coords[S_SIZE][2];
+    if (rotacion == 0) {
+        int temp[S_SIZE][2] = {
+            {y, x}, {y, x + 1}, {y + 1, x}, {y + 1, x - 1}
+        };
+        set_coordinates(coords, S_SIZE, temp);
+    } else {
+        int temp[S_SIZE][2] = {
+            {y, x}, {y + 1, x}, {y + 1, x + 1}, {y + 2, x + 1}
+        };
+        set_coordinates(coords, S_SIZE, temp);
+    }
+    set_coordinates(s, S_SIZE, coords);
+}
