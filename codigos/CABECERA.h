@@ -7,14 +7,14 @@ int conv_seg_min(int segundos,int minutos, int operacion);
 //se define la funcion para recargar la pantalla
 void draw();
 
-// se define las coordenadas de el cuadrado
-void coordenadas_de_cuadrado (int x, int y);
+// se define las coordenadas de el c
+void coordenadas_de_c (int x, int y);
 
-//se define el cuadrado 
-extern int cuadrado[4][2];
+//se define el c 
+extern int c[4][2];
 
-//se define el palo
-extern int palo[4][2];
+//se define el p
+extern int p[4][2];
 
 //se define la u
 extern int u[5][2];
@@ -34,8 +34,8 @@ void coordenadas_de_L(int y, int x, int rotacion);
 //se define las ccordenadas de la L
 void coordenadas_de_u (int y, int x, int rotacion);
 
-//se define las coordenadas del palo
-void coordenadas_de_palo (int y, int x, int rotacion);
+//se define las coordenadas del p
+void coordenadas_de_p (int y, int x, int rotacion);
 
 //se define la tabla
 extern char tabla[22][22];
@@ -66,5 +66,9 @@ RecolectorBasura* inicializar_recolector();
 void registrar_puntero(RecolectorBasura* recolector, void* ptr);
 void recolectar_basura(RecolectorBasura* recolector);
 void liberar_recolector(RecolectorBasura* recolector);
+
+void mover_figura();
+
+extern int rota;
 
 #endif // CABECERA_H

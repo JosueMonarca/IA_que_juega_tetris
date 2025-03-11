@@ -3,6 +3,7 @@
 *.out
 *.dll
 *.so
+.exe
 
 # Ignore editor configuration files
 .vscode/
@@ -11,5 +12,4 @@
 *.sublime-workspace
 
 #ignore  la carpeta de ejecutables
-ejecutable/*.exe
-```
+ejecutable/

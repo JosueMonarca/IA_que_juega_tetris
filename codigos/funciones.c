@@ -7,26 +7,26 @@
 
 
 int colision() {
-    // Verificar si las posiciones inferiores del cuadrado están en contacto con un borde ('*')
-    for (int k = 2; k < 4; k++) { // Solo revisamos la parte inferior del cuadrado
-        int y = cuadrado[k][0] + 1; // Próxima posición en Y
-        int x = cuadrado[k][1];     // Posición actual en X
+    // Verificar si las posiciones inferiores del c están en contacto con un borde ('*')
+    for (int k = 2; k < 4; k++) { // Solo revisamos la parte inferior del c
+        int y = p[k][0] + 1; // Próxima posición en Y
+        int x = p[k][1];     // Posición actual en X
         
-        if (cuadrado[k][1]+1=='*'||cuadrado[k][1]-1=='*'){//se corroboran las coliciones con los bordes
+        if (p[k][1]+1=='*'||p[k][1]-1=='*'){//se corroboran las coliciones con los bordes
             return 2;
         }
         
-          // Verificar si la próxima posición está fuera del área del cuadrado actual
-        bool es_parte_del_cuadrado = false;
+          // Verificar si la próxima posición está fuera del área del c actual
+        bool es_parte_del_p = false;
         for (int i = 0; i < 4; i++) {
-            if (cuadrado[i][0] == y && cuadrado[i][1] == x) {
-                es_parte_del_cuadrado = true;
+            if (c[i][0] == y && c[i][1] == x) {
+                es_parte_del_p = true;
                 break;
             }
         }
         
-        // Si no es parte del cuadrado y encuentra '*' o '#', hay colisión
-        if (!es_parte_del_cuadrado && (tabla[y][x] == '*' || tabla[y][x] == '#')) {
+        // Si no es parte del c y encuentra '*' o '#', hay colisión
+        if (!es_parte_del_p && (tabla[y][x] == '*' || tabla[y][x] == '#')) {
             return 1; // Hay colisión
         }
     }
@@ -75,26 +75,27 @@ void gravity(){
     int i;
     int x;
     int y; // Declare y outside the loop
-    //se mueve el cuadrado hacia abajo
+    //se mueve el c hacia abajo
     if (colision()==0||colision()==2)
     {
-    coordenadas_de_cuadrado(cuadrado[0][0]+1,cuadrado[0][1]); 
+    //coordenadas_de_c(c[0][0]+1,c[0][1]); 
     //el primer parametro es la cordenada 'y' y el segundo la cordenada 'x
 
-    //se mueve el palo hacia abajo
-    coordenadas_de_palo(palo[0][0]+1,palo[0][1],0);
+    //se mueve el p hacia abajo
+    coordenadas_de_p(p[0][0]+1,p[0][1],0);
 
     //se mueve la U hacia abajo
-    coordenadas_de_u(u[0][0]+1,u[0][1],1);
+    //coordenadas_de_u(u[0][0]+1,u[0][1],1);
 
     //se mueve la L hacia abajo
-    coordenadas_de_L(l[0][0]+1,l[0][1],0);
+    //coordenadas_de_L(l[0][0]+1,l[0][1],0);
 
     //se mueve la T hacia abajo
-    coordenadas_de_t(t[0][0]+1,t[0][1],0);
+    //coordenadas_de_t(t[0][0]+1,t[0][1],0);
+
     }
     else{
-        coordenadas_de_cuadrado(cuadrado[0][0],cuadrado[0][1]);
+        coordenadas_de_c(c[0][0],c[0][1]);
     }
 }
 
@@ -109,22 +110,22 @@ void draw() {
             if (x == 0 || x == 21 || y == 0 || y == 21) {
                 tabla[x][y] = '*';//borde del tablero
             } else {
-                // Revisar si el punto (i, j) coincide con alguna coordenada del cuadrado
+                // Revisar si el punto (i, j) coincide con alguna coordenada del c
                 tabla[x][y] = ' '; // Inicialmente vacío
-                
+/*
                 for (int k = 0; k < 4; k++) {
-                    if (x == cuadrado[k][0] && y == cuadrado[k][1]) {
-                        tabla[x][y] = '#'; // Parte del cuadrado
+                    if (x == c[k][0] && y == c[k][1]) {
+                        tabla[x][y] = '#'; // Parte del c
                     }
                 }
-
-                // Revisar si el punto (i, j) coincide con alguna coordenada del palo
+*/
+                // Revisar si el punto (i, j) coincide con alguna coordenada del p
                 for (int k = 0; k < 5; k++) {
-                    if (x == palo[k][0] && y == palo[k][1]) {
-                        tabla[x][y] = '#'; // Parte del palo
+                    if (x == p[k][0] && y == p[k][1]) {
+                        tabla[x][y] = '#'; // Parte del p
                     }
                 }
-
+/*
                 // Revisar si el punto (i, j) coincide con alguna coordenada de la U
                 for (int k = 0; k < 5; k++) {
                     if (x == u[k][0] && y == u[k][1]) {
@@ -145,7 +146,8 @@ void draw() {
                         tabla[x][y] = '#'; // Parte de la T
                     }
                 }
-            }
+*/
+                }
             // Imprimir el contenido del tablero
             printf("%c", tabla[x][y]);
         }
