@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define CUADRADO_SIZE 4
-#define PALO_SIZE 4
+#define c_SIZE 4
+#define p_SIZE 4
 #define U_SIZE 5
 #define L_SIZE 5
 #define T_SIZE 4
@@ -11,8 +11,8 @@
 
 char tabla[22][22];
 
-int cuadrado[CUADRADO_SIZE][2];
-int palo[PALO_SIZE][2];
+int c[c_SIZE][2];
+int p[p_SIZE][2];
 int u[U_SIZE][2];
 int l[L_SIZE][2];
 int t[T_SIZE][2];
@@ -34,27 +34,27 @@ void set_coordinates(int shape[][2], int size, int coords[][2]) {
     }
 }
 
-void coordenadas_de_cuadrado(int x, int y) {
-    int coords[CUADRADO_SIZE][2] = {
+void coordenadas_de_c(int x, int y) {
+    int coords[c_SIZE][2] = {
         {x, y}, {x + 1, y}, {x, y + 1}, {x + 1, y + 1}
     };
-    set_coordinates(cuadrado, CUADRADO_SIZE, coords);
+    set_coordinates(c, c_SIZE, coords);
 }
 
-void coordenadas_de_palo(int y, int x, int rotacion) {
-    int coords[PALO_SIZE][2];
+void coordenadas_de_p(int y, int x, int rotacion) {
+    int coords[p_SIZE][2];
     if (rotacion == 0) {
-        int temp[PALO_SIZE][2] = {
+        int temp[p_SIZE][2] = {
             {y, x}, {y + 1, x}, {y + 2, x}, {y + 3, x}
         };
-        set_coordinates(coords, PALO_SIZE, temp);
+        set_coordinates(coords, p_SIZE, temp);
     } else {
-        int temp[PALO_SIZE][2] = {
+        int temp[p_SIZE][2] = {
             {y, x}, {y, x + 1}, {y, x + 2}, {y, x + 3}
         };
-        set_coordinates(coords, PALO_SIZE, temp);
+        set_coordinates(coords, p_SIZE, temp);
     }
-    set_coordinates(palo, PALO_SIZE, coords);
+    set_coordinates(p, p_SIZE, coords);
 }
 
 void coordenadas_de_u(int y, int x, int rotacion) {
