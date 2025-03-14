@@ -6,27 +6,28 @@
 #include <windows.h>
 
 
-int colision() {
+int colision(int figura[4][2]) {
     // Verificar si las posiciones inferiores del c están en contacto con un borde ('*')
     for (int k = 2; k < 4; k++) { // Solo revisamos la parte inferior del c
-        int y = c[k][0] + 1; // Próxima posición en Y
-        int x = c[k][1];     // Posición actual en X
+        int y = figura[k][0] + 1; // Próxima posición en Y
+        int x = figura[k][1];     // Posición actual en X
         
-        if (c[k][1]+1=='*'||c[k][1]-1=='*'){//se corroboran las coliciones con los bordes
-            return 2;
+        // Verificar colisiones con los bordes laterales
+        if (tabla[figura[k][0]][figura[k][1] + 1] == '*' || tabla[figura[k][0]][figura[k][1] - 1] == '*') {
+            return 2; // Colisión con los bordes laterales
         }
         
-          // Verificar si la próxima posición está fuera del área del c actual
-        bool es_parte_del_c = false;
+        // Verificar si la próxima posición está fuera del área del figura actual
+        bool es_parte_de_la_figura = false;
         for (int i = 0; i < 4; i++) {
-            if (c[i][0] == y && c[i][1] == x) {
-                es_parte_del_c = true;
+            if (figura[i][0] == y && figura[i][1] == x) {
+                es_parte_de_la_figura = true;
                 break;
             }
         }
         
-        // Si no es parte del c y encuentra '*' o '#', hay colisión
-        if (!es_parte_del_c && (tabla[y][x] == '*' || tabla[y][x] == '#')) {
+        // Si no es parte de la figura y encuentra '*' o '#', hay colisión
+        if (!es_parte_de_la_figura && (tabla[y][x] == '*' || tabla[y][x] == '#')) {
             return 1; // Hay colisión
         }
     }
@@ -76,7 +77,7 @@ void gravity(){
     int x;
     int y; // Declare y outside the loop
     //se mueve el c hacia abajo
-    if (colision()==0||colision()==2)
+    if (colision(c)==0)
     {
     coordenadas_de_c(c[0][0]+1,c[0][1]); 
     //el primer parametro es la cordenada 'y' y el segundo la cordenada 'x
@@ -112,7 +113,7 @@ void draw() {
             } else {
                 // Revisar si el punto (i, j) coincide con alguna coordenada del c
                 tabla[x][y] = ' '; // Inicialmente vacío
-/*
+
                 for (int k = 0; k < 4; k++) {
                     if (x == c[k][0] && y == c[k][1]) {
                         tabla[x][y] = '#'; // Parte del c
@@ -125,7 +126,7 @@ void draw() {
                         tabla[x][y] = '#'; // Parte del p
                     }
                 }
-/*
+
                 // Revisar si el punto (i, j) coincide con alguna coordenada de la U
                 for (int k = 0; k < 5; k++) {
                     if (x == u[k][0] && y == u[k][1]) {
