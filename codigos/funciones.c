@@ -9,24 +9,24 @@
 int colision() {
     // Verificar si las posiciones inferiores del c están en contacto con un borde ('*')
     for (int k = 2; k < 4; k++) { // Solo revisamos la parte inferior del c
-        int y = p[k][0] + 1; // Próxima posición en Y
-        int x = p[k][1];     // Posición actual en X
+        int y = c[k][0] + 1; // Próxima posición en Y
+        int x = c[k][1];     // Posición actual en X
         
-        if (p[k][1]+1=='*'||p[k][1]-1=='*'){//se corroboran las coliciones con los bordes
+        if (c[k][1]+1=='*'||c[k][1]-1=='*'){//se corroboran las coliciones con los bordes
             return 2;
         }
         
           // Verificar si la próxima posición está fuera del área del c actual
-        bool es_parte_del_p = false;
+        bool es_parte_del_c = false;
         for (int i = 0; i < 4; i++) {
             if (c[i][0] == y && c[i][1] == x) {
-                es_parte_del_p = true;
+                es_parte_del_c = true;
                 break;
             }
         }
         
         // Si no es parte del c y encuentra '*' o '#', hay colisión
-        if (!es_parte_del_p && (tabla[y][x] == '*' || tabla[y][x] == '#')) {
+        if (!es_parte_del_c && (tabla[y][x] == '*' || tabla[y][x] == '#')) {
             return 1; // Hay colisión
         }
     }
@@ -78,9 +78,9 @@ void gravity(){
     //se mueve el c hacia abajo
     if (colision()==0||colision()==2)
     {
-    //coordenadas_de_c(c[0][0]+1,c[0][1]); 
+    coordenadas_de_c(c[0][0]+1,c[0][1]); 
     //el primer parametro es la cordenada 'y' y el segundo la cordenada 'x
-
+/*
     //se mueve el p hacia abajo
     coordenadas_de_p(p[0][0]+1,p[0][1],0);
 
@@ -92,7 +92,7 @@ void gravity(){
 
     //se mueve la T hacia abajo
     //coordenadas_de_t(t[0][0]+1,t[0][1],0);
-
+*/
     }
     else{
         coordenadas_de_c(c[0][0],c[0][1]);
@@ -118,7 +118,7 @@ void draw() {
                         tabla[x][y] = '#'; // Parte del c
                     }
                 }
-*/
+/*
                 // Revisar si el punto (i, j) coincide con alguna coordenada del p
                 for (int k = 0; k < 5; k++) {
                     if (x == p[k][0] && y == p[k][1]) {
