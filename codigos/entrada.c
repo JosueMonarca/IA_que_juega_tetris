@@ -24,11 +24,21 @@ void mover_figura() {
     // Si se presiona la flecha izquierda
     if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
         // Lógica para mover la figura a la izquierda
+        if (tabla[c[0][0]][c[0][1]-1] == '*') {
+            coordenadas_de_c(c[0][0],c[0][1]);
+        }
+        else{
         coordenadas_de_c(c[0][0],c[0][1]-1);
+        }
     }
     // Si se presiona la flecha derecha
     if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
         // Lógica para mover la figura a la derecha
-        coordenadas_de_c(c[0][0],c[0][1]+1);
+        if(tabla[c[2][0]][c[2][1]+1] == '*'){
+            coordenadas_de_c(c[0][0],c[0][1]);
+        }
+        else{
+            coordenadas_de_c(c[0][0],c[0][1]+1);
+        }
     }
 };

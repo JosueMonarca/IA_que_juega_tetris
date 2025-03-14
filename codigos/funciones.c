@@ -6,9 +6,10 @@
 #include <windows.h>
 
 
-int colision(int figura[4][2]) {
+int colision(int figura[][2], int filas) {
+
     // Verificar si las posiciones inferiores del c están en contacto con un borde ('*')
-    for (int k = 2; k < 4; k++) { // Solo revisamos la parte inferior del c
+    for (int k = 2; k < filas; k++) { // Solo revisamos la parte inferior del c
         int y = figura[k][0] + 1; // Próxima posición en Y
         int x = figura[k][1];     // Posición actual en X
         
@@ -77,7 +78,7 @@ void gravity(){
     int x;
     int y; // Declare y outside the loop
     //se mueve el c hacia abajo
-    if (colision(c)==0)
+    if (colision(c,sizeof(c)/sizeof(c[0]))==0)
     {
     coordenadas_de_c(c[0][0]+1,c[0][1]); 
     //el primer parametro es la cordenada 'y' y el segundo la cordenada 'x
