@@ -10,7 +10,7 @@ int main() {
 
     rota = 0;
     ocultar_cursor();//se oculta el cursor
-    coordenadas_de_c(1,3);//se iniciazalizan las cordenadas del c
+    coordenadas_de_c(1,3,0);//se iniciazalizan las cordenadas del c
     //coordenadas_de_p(1,14,0);//se inicializan las cordenadas del p
     //coordenadas_de_u(1,7,1);//se inicializan las cordenadas de la U
     //coordenadas_de_L(1,11,0);//se inicializan las cordenadas de la L
@@ -27,7 +27,7 @@ int main() {
         mover_cursor(0, 0);
         draw();
         mover_figura('c');
-        Sleep(300);
+        Sleep(100);
     }
     //while (game_over()==false);
 

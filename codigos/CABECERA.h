@@ -8,7 +8,7 @@ int conv_seg_min(int segundos,int minutos, int operacion);
 void draw();
 
 // se define las coordenadas de el c
-void coordenadas_de_c (int x, int y);
+void coordenadas_de_c (int x, int y,int rotacion);
 
 //se define el c 
 extern int c[4][2];

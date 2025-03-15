@@ -80,7 +80,7 @@ void gravity(){
     //se mueve el c hacia abajo
     if (colision(c,sizeof(c)/sizeof(c[0]))==0)
     {
-    coordenadas_de_c(c[0][0]+1,c[0][1]); 
+    coordenadas_de_c(c[0][0]+1,c[0][1],0); 
     //el primer parametro es la cordenada 'y' y el segundo la cordenada 'x
 /*
     //se mueve el p hacia abajo
@@ -97,7 +97,7 @@ void gravity(){
 */
     }
     else{
-        coordenadas_de_c(c[0][0],c[0][1]);
+        coordenadas_de_c(c[0][0],c[0][1],0);
     }
 }
 

@@ -11,199 +11,38 @@ int rota;
 
 // Función para mover la figura
 void mover_figura(char figura) {
+    void (*coordenadas_func)(int, int, int) = NULL;
+    int (*figura_coords)[][2] = NULL;
+
     switch (figura) {
-        case 'c':
-            // Si se presiona la flecha arriba
-            if (GetAsyncKeyState(VK_UP) & 0x8000) {
-                coordenadas_de_c(c[0][0], c[0][1]);
-            }
-            // Si se presiona la flecha abajo
-            if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-                coordenadas_de_c(c[0][0] + 1, c[0][1]);
-            }
-            // Si se presiona la flecha izquierda
-            if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-                if (tabla[c[0][0]][c[0][1] - 1] == '*') {
-                    coordenadas_de_c(c[0][0], c[0][1]);
-                } else {
-                    coordenadas_de_c(c[0][0], c[0][1] - 1);
-                }
-            }
-            // Si se presiona la flecha derecha
-            if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-                if (tabla[c[2][0]][c[2][1] + 1] == '*') {
-                    coordenadas_de_c(c[0][0], c[0][1]);
-                } else {
-                    coordenadas_de_c(c[0][0], c[0][1] + 1);
-                }
-            }
-            break;
-
-        case 'p':
-            // Si se presiona la flecha arriba
-            if (GetAsyncKeyState(VK_UP) & 0x8000) {
-                coordenadas_de_p(p[0][0], p[0][1], rota);
-            }
-            // Si se presiona la flecha abajo
-            if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-                coordenadas_de_p(p[0][0] + 1, p[0][1], rota);
-            }
-            // Si se presiona la flecha izquierda
-            if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-                if (tabla[p[0][0]][p[0][1] - 1] == '*') {
-                    coordenadas_de_p(p[0][0], p[0][1], rota);
-                } else {
-                    coordenadas_de_p(p[0][0], p[0][1] - 1, rota);
-                }
-            }
-            // Si se presiona la flecha derecha
-            if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-                if (tabla[p[2][0]][p[2][1] + 1] == '*') {
-                    coordenadas_de_p(p[0][0], p[0][1], rota);
-                } else {
-                    coordenadas_de_p(p[0][0], p[0][1] + 1, rota);
-                }
-            }
-            break;
-
-        case 'u':
-            // Si se presiona la flecha arriba
-            if (GetAsyncKeyState(VK_UP) & 0x8000) {
-                coordenadas_de_u(u[0][0], u[0][1], rota);
-            }
-            // Si se presiona la flecha abajo
-            if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-                coordenadas_de_u(u[0][0] + 1, u[0][1], rota);
-            }
-            // Si se presiona la flecha izquierda
-            if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-                if (tabla[u[0][0]][u[0][1] - 1] == '*') {
-                    coordenadas_de_u(u[0][0], u[0][1], rota);
-                } else {
-                    coordenadas_de_u(u[0][0], u[0][1] - 1, rota);
-                }
-            }
-            // Si se presiona la flecha derecha
-            if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-                if (tabla[u[2][0]][u[2][1] + 1] == '*') {
-                    coordenadas_de_u(u[0][0], u[0][1], rota);
-                } else {
-                    coordenadas_de_u(u[0][0], u[0][1] + 1, rota);
-                }
-            }
-            break;
-
-        case 'l':
-            // Si se presiona la flecha arriba
-            if (GetAsyncKeyState(VK_UP) & 0x8000) {
-                coordenadas_de_L(l[0][0], l[0][1], rota);
-            }
-            // Si se presiona la flecha abajo
-            if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-                coordenadas_de_L(l[0][0] + 1, l[0][1], rota);
-            }
-            // Si se presiona la flecha izquierda
-            if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-                if (tabla[l[0][0]][l[0][1] - 1] == '*') {
-                    coordenadas_de_L(l[0][0], l[0][1], rota);
-                } else {
-                    coordenadas_de_L(l[0][0], l[0][1] - 1, rota);
-                }
-            }
-            // Si se presiona la flecha derecha
-            if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-                if (tabla[l[2][0]][l[2][1] + 1] == '*') {
-                    coordenadas_de_L(l[0][0], l[0][1], rota);
-                } else {
-                    coordenadas_de_L(l[0][0], l[0][1] + 1, rota);
-                }
-            }
-            break;
-
-        case 't':
-            // Si se presiona la flecha arriba
-            if (GetAsyncKeyState(VK_UP) & 0x8000) {
-                coordenadas_de_t(t[0][0], t[0][1], rota);
-            }
-            // Si se presiona la flecha abajo
-            if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-                coordenadas_de_t(t[0][0] + 1, t[0][1], rota);
-            }
-            // Si se presiona la flecha izquierda
-            if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-                if (tabla[t[0][0]][t[0][1] - 1] == '*') {
-                    coordenadas_de_t(t[0][0], t[0][1], rota);
-                } else {
-                    coordenadas_de_t(t[0][0], t[0][1] - 1, rota);
-                }
-            }
-            // Si se presiona la flecha derecha
-            if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-                if (tabla[t[2][0]][t[2][1] + 1] == '*') {
-                    coordenadas_de_t(t[0][0], t[0][1], rota);
-                } else {
-                    coordenadas_de_t(t[0][0], t[0][1] + 1, rota);
-                }
-            }
-            break;
-
-        case 'z':
-            // Si se presiona la flecha arriba
-            if (GetAsyncKeyState(VK_UP) & 0x8000) {
-                coordenadas_de_z(z[0][0], z[0][1], rota);
-            }
-            // Si se presiona la flecha abajo
-            if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-                coordenadas_de_z(z[0][0] + 1, z[0][1], rota);
-            }
-            // Si se presiona la flecha izquierda
-            if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-                if (tabla[z[0][0]][z[0][1] - 1] == '*') {
-                    coordenadas_de_z(z[0][0], z[0][1], rota);
-                } else {
-                    coordenadas_de_z(z[0][0], z[0][1] - 1, rota);
-                }
-            }
-            // Si se presiona la flecha derecha
-            if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-                if (tabla[z[2][0]][z[2][1] + 1] == '*') {
-                    coordenadas_de_z(z[0][0], z[0][1], rota);
-                } else {
-                    coordenadas_de_z(z[0][0], z[0][1] + 1, rota);
-                }
-            }
-            break;
-
-        case 's':
-            // Si se presiona la flecha arriba
-            if (GetAsyncKeyState(VK_UP) & 0x8000) {
-                coordenadas_de_s(s[0][0], s[0][1], rota);
-            }
-            // Si se presiona la flecha abajo
-            if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-                coordenadas_de_s(s[0][0] + 1, s[0][1], rota);
-            }
-            // Si se presiona la flecha izquierda
-            if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-                if (tabla[s[0][0]][s[0][1] - 1] == '*') {
-                    coordenadas_de_s(s[0][0], s[0][1], rota);
-                } else {
-                    coordenadas_de_s(s[0][0], s[0][1] - 1, rota);
-                }
-            }
-            // Si se presiona la flecha derecha
-            if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-                if (tabla[s[2][0]][s[2][1] + 1] == '*') {
-                    coordenadas_de_s(s[0][0], s[0][1], rota);
-                } else {
-                    coordenadas_de_s(s[0][0], s[0][1] + 1, rota);
-                }
-            }
-            break;
-
-        default:
-            
-            break;
+        case 'c': coordenadas_func = coordenadas_de_c; figura_coords = &c; break;
+        case 'p': coordenadas_func = coordenadas_de_p; figura_coords = &p; break;
+        case 'u': coordenadas_func = coordenadas_de_u; figura_coords = &u; break;
+        case 'l': coordenadas_func = coordenadas_de_L; figura_coords = &l; break;
+        case 't': coordenadas_func = coordenadas_de_t; figura_coords = &t; break;
+        case 'z': coordenadas_func = coordenadas_de_z; figura_coords = &z; break;
+        case 's': coordenadas_func = coordenadas_de_s; figura_coords = &s; break;
+        default: return;
     }
-    
-};
+
+    if (GetAsyncKeyState(VK_UP) & 0x8000) {
+        coordenadas_func((*figura_coords)[0][0], (*figura_coords)[0][1], rota);
+    }
+    if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+        coordenadas_func((*figura_coords)[0][0] + 1, (*figura_coords)[0][1], rota);
+    }
+    if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
+        if (tabla[(*figura_coords)[0][0]][(*figura_coords)[0][1] - 1] == '*') {
+            coordenadas_func((*figura_coords)[0][0], (*figura_coords)[0][1], rota);
+        } else {
+            coordenadas_func((*figura_coords)[0][0], (*figura_coords)[0][1] - 1, rota);
+        }
+    }
+    if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
+        if (tabla[(*figura_coords)[2][0]][(*figura_coords)[2][1] + 1] == '*') {
+            coordenadas_func((*figura_coords)[0][0], (*figura_coords)[0][1], rota);
+        } else {
+            coordenadas_func((*figura_coords)[0][0], (*figura_coords)[0][1] + 1, rota);
+        }
+    }
+}
