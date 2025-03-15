@@ -26,7 +26,7 @@ int main() {
     for(int i=0;i<25;i++){
         mover_cursor(0, 0);
         draw();
-        mover_figura();
+        mover_figura('c');
         Sleep(300);
     }
     //while (game_over()==false);
