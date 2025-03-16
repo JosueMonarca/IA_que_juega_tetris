@@ -9,6 +9,8 @@
 
 int rota;
 
+static bool tecla_presionada = false;
+
 // Función para mover la figura
 void mover_figura(char figura) {
     void (*coordenadas_func)(int, int, int) = NULL;
@@ -26,23 +28,48 @@ void mover_figura(char figura) {
     }
 
     if (GetAsyncKeyState(VK_UP) & 0x8000) {
-        coordenadas_func((*figura_coords)[0][0], (*figura_coords)[0][1], rota);
+        if(!tecla_presionada){
+            coordenadas_func((*figura_coords)[0][0], (*figura_coords)[0][1], rota);
+            tecla_presionada = true;
+        }else {
+            tecla_presionada = false;
+        }
     }
     if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-        coordenadas_func((*figura_coords)[0][0] + 1, (*figura_coords)[0][1], rota);
+        if(!tecla_presionada){
+            if(tabla[(*figura_coords)[2][0] + 1][(*figura_coords)[2][1]] == '*'){
+                coordenadas_func((*figura_coords)[0][0] + 1, (*figura_coords)[0][1], rota);
+                tecla_presionada = true;
+            }else{
+                coordenadas_func((*figura_coords)[0][0], (*figura_coords)[0][1], rota);
+                tecla_presionada = true;
+            }
+        }else {
+            tecla_presionada = false;
+        }
     }
     if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-        if (tabla[(*figura_coords)[0][0]][(*figura_coords)[0][1] - 1] == '*') {
-            coordenadas_func((*figura_coords)[0][0], (*figura_coords)[0][1], rota);
-        } else {
-            coordenadas_func((*figura_coords)[0][0], (*figura_coords)[0][1] - 1, rota);
+        if(!tecla_presionada){
+            tecla_presionada = true;
+            if (tabla[(*figura_coords)[0][0]][(*figura_coords)[0][1] - 1] == '*') {
+                coordenadas_func((*figura_coords)[0][0], (*figura_coords)[0][1], rota);
+            } else {
+                coordenadas_func((*figura_coords)[0][0], (*figura_coords)[0][1] - 1, rota);
+            }
+        }else {
+            tecla_presionada = false;
         }
     }
     if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-        if (tabla[(*figura_coords)[2][0]][(*figura_coords)[2][1] + 1] == '*') {
-            coordenadas_func((*figura_coords)[0][0], (*figura_coords)[0][1], rota);
-        } else {
-            coordenadas_func((*figura_coords)[0][0], (*figura_coords)[0][1] + 1, rota);
+        if(!tecla_presionada){
+            tecla_presionada = true;
+            if (tabla[(*figura_coords)[2][0]][(*figura_coords)[2][1] + 1] == '*') {
+                coordenadas_func((*figura_coords)[0][0], (*figura_coords)[0][1], rota);
+            } else {
+                coordenadas_func((*figura_coords)[0][0], (*figura_coords)[0][1] + 1, rota);
+            }
+        }else{
+            tecla_presionada = false;
         }
     }
 }

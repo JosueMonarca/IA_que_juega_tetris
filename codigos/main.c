@@ -27,7 +27,7 @@ int main() {
         mover_cursor(0, 0);
         draw();
         mover_figura('c');
-        Sleep(100);
+        Sleep(150);
     }
     //while (game_over()==false);
 
