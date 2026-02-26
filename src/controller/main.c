@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "CABECERA.h"
+#include "../../include/CABECERA.h"
 #include <windows.h>
 
 int main() {

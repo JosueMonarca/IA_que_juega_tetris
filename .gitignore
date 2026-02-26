@@ -11,5 +11,5 @@
 *.sublime-project
 *.sublime-workspace
 
-#ignore  la carpeta de ejecutables
-ejecutable/
+*.class
+*.jar

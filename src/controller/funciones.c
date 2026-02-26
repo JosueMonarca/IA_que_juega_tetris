@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdbool.h>
-#include "CABECERA.h"
+#include "../../include/CABECERA.h"
 #include <windows.h>
 
 
@@ -74,9 +74,6 @@ int conv_seg_min(int segundos,int minutos, int operacion){
 }
 
 void gravity(){
-    int i;
-    int x;
-    int y; // Declare y outside the loop
     //se mueve el c hacia abajo
     if (colision(c,sizeof(c)/sizeof(c[0]))==0)
     {

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdbool.h>
-#include "CABECERA.h"
+#include "../../include/CABECERA.h"
 #include <windows.h>
 
 // Inicializa el recolector de basura
