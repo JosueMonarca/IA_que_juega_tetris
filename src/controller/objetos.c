@@ -19,6 +19,13 @@ int t[T_SIZE][2];
 int z[Z_SIZE][2];
 int s[S_SIZE][2];
 
+typedef struct 
+{
+    int x;
+    int y;
+}unit;
+
+
 /**
  * Esta función toma un array de enteros y su tamaño como entrada,
  * y devuelve la suma de todos los elementos en el array.
@@ -33,8 +40,9 @@ void set_coordinates(int shape[][2], int size, int coords[][2]) {
         shape[i][1] = coords[i][1];
     }
 }
-
-void coordenadas_de_c(int x, int y) {
+//nota el parametro rotacion no se usa 
+//solo se puso para que el puntero a la funcion sea igual en todas las funciones
+void coordenadas_de_c(int x, int y, int rotacion) {
     int coords[c_SIZE][2] = {
         {x, y}, {x + 1, y}, {x, y + 1}, {x + 1, y + 1}
     };

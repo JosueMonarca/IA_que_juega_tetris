@@ -8,7 +8,7 @@ int conv_seg_min(int segundos,int minutos, int operacion);
 void draw();
 
 // se define las coordenadas de el c
-void coordenadas_de_c (int x, int y);
+void coordenadas_de_c (int x, int y,int rotacion);
 
 //se define el c 
 extern int c[4][2];
@@ -25,6 +25,12 @@ extern int l[5][2];
 //se define a "t"
 extern int t[4][2];
 
+//se define a "z"
+extern int z[4][2];
+
+//se define a "s"
+extern int s[4][2];
+
 //se define Las coordenadas de la T
 void coordenadas_de_t(int y, int x, int rotacion);
 
@@ -36,6 +42,12 @@ void coordenadas_de_u (int y, int x, int rotacion);
 
 //se define las coordenadas del p
 void coordenadas_de_p (int y, int x, int rotacion);
+
+//se define las coordenadas de la z
+void coordenadas_de_z (int y, int x, int rotacion);
+
+//se define las coordenadas de la s
+void coordenadas_de_s (int y, int x, int rotacion);
 
 //se define la tabla
 extern char tabla[22][22];
@@ -67,7 +79,7 @@ void registrar_puntero(RecolectorBasura* recolector, void* ptr);
 void recolectar_basura(RecolectorBasura* recolector);
 void liberar_recolector(RecolectorBasura* recolector);
 
-void mover_figura();
+void mover_figura(char figura);
 
 extern int rota;
 
