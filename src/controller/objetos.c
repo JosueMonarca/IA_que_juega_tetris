@@ -19,6 +19,13 @@ int t[T_SIZE][2];
 int z[Z_SIZE][2];
 int s[S_SIZE][2];
 
+typedef struct 
+{
+    int x;
+    int y;
+}unit;
+
+
 /**
  * Esta función toma un array de enteros y su tamaño como entrada,
  * y devuelve la suma de todos los elementos en el array.
