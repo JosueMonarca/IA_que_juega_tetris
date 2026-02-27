@@ -3,7 +3,7 @@
 // Descripción: Este código es un ejemplo de cómo se puede detectar la entrada del teclado en C.
 // Para ello, se utiliza la función GetAsyncKeyState de la biblioteca Windows.h.
 #include <stdbool.h>
-#include "../../include/CABECERA.h"
+#include "../../include/TETRIS.h"
 #include <stdio.h>
 #include <windows.h>
 

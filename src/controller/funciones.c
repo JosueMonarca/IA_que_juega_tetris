@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdbool.h>
-#include "../../include/CABECERA.h"
+#include "../../include/TETRIS.h"
 #include <windows.h>
 
 

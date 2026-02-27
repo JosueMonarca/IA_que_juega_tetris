@@ -1,5 +1,5 @@
-#ifndef CABECERA_H
-#define CABECERA_H
+#ifndef TETRIS_H
+#define TETRIS_H
 
 //se definen las funciones de tiempo
 int conv_seg_min(int segundos,int minutos, int operacion);
@@ -83,4 +83,4 @@ void mover_figura(char figura);
 
 extern int rota;
 
-#endif // CABECERA_H
+#endif // TETRIS_H
