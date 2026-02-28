@@ -1,4 +1,4 @@
-#include "../../include/UNIT.h";
+#include "../../include/UNIT.h"
 
 int get_x(unit* u){
     return u->x;
