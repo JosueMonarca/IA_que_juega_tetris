@@ -3,11 +3,11 @@
 #define HIGHT 22
 #define WIDTH 22
 
-typedef struct TABLE
+typedef struct 
 {
-    int hight = 22;
-    int width = 22;
-    char table[HIGHT][WIDTH];
-};
+    int hight;
+    int width;
+    int table[HIGHT][WIDTH];
+}TABLE;
 
 #endif
