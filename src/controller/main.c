@@ -3,30 +3,27 @@
 #include <stdbool.h>
 #include "../../include/TETRIS.h"
 #include <windows.h>
+#include "../../include/orchestrator.h"
+#include "../../include/PIECE.h"
+#include "../../include/TABLE.h"
+#include <stdbool.h>
 
 int main() {
      // Inicialización
     RecolectorBasura* recolector = inicializar_recolector();
 
-    rota = 0;
+    TABLE tabla_main = {HIGHT, WIDTH, {{0}}};
+    init_table(&tabla_main);
+
+    PIECE piece_main = generate_piece();
+    set_piece_position(&piece_main, 1, 0);
     ocultar_cursor();//se oculta el cursor
-    coordenadas_de_c(1,3,0);//se iniciazalizan las cordenadas del c
-    //coordenadas_de_p(1,14,0);//se inicializan las cordenadas del p
-    //coordenadas_de_u(1,7,1);//se inicializan las cordenadas de la U
-    //coordenadas_de_L(1,11,0);//se inicializan las cordenadas de la L
-    //coordenadas_de_t(1,18,0);//se inicializan las cordenadas de la T
-    registrar_puntero(recolector, c);
-    //registrar_puntero(recolector, p);
-    //registrar_puntero(recolector,tabla);
-    //registrar_puntero(recolector, u);
-    //registrar_puntero(recolector, l);
-    //registrar_puntero(recolector, t);
 
 
     for(int i=0;i<25;i++){
-        mover_cursor(0, 0);
-        draw();
-        mover_figura('c');
+        mover_cursor(1,0);
+        draw(&tabla_main, &piece_main);
+        mover_figura(&piece_main, &tabla_main);
         Sleep(150);
     }
     //while (game_over()==false);
@@ -37,3 +34,4 @@ int main() {
     
     return 0;
 }
+

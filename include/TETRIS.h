@@ -1,14 +1,25 @@
 #ifndef TETRIS_H
 #define TETRIS_H
+#include "PIECE.h"
+#include "TABLE.h"
 
 //se definen las funciones de tiempo
 int conv_seg_min(int segundos,int minutos, int operacion);
 
 //se define la funcion para recargar la pantalla
-void draw();
+void draw(TABLE* t, PIECE* p);
 
 // se define las coordenadas de el c
 void coordenadas_de_c (int x, int y,int rotacion);
+
+// se define una funcion para numeros aleatoris
+int generate_random_number();
+
+// se define la funcion para generar piezas aleatorias
+PIECE generate_piece();
+
+// se define la funcion mover las figuras por teclado
+void mover_figura(PIECE* p, TABLE* t);
 
 //se define el c 
 extern int c[4][2];
@@ -78,8 +89,6 @@ RecolectorBasura* inicializar_recolector();
 void registrar_puntero(RecolectorBasura* recolector, void* ptr);
 void recolectar_basura(RecolectorBasura* recolector);
 void liberar_recolector(RecolectorBasura* recolector);
-
-void mover_figura(char figura);
 
 extern int rota;
 

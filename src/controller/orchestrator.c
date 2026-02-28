@@ -35,7 +35,7 @@ int move_simple(PIECE* p, int add_or_subs, TABLE* t, int cardinality){
         return FALSE;
     }else{
         for(int i = 0; i < p ->size;i++){
-            if(cardinality == HORIZONTAL){
+            if(cardinality == VERTICAL){
                 p->blocks[i].x += add_or_subs;
             }else{
                 p->blocks[i].y += add_or_subs;
