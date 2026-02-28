@@ -9,8 +9,6 @@
 #include <stdbool.h>
 
 int main() {
-     // Inicialización
-    RecolectorBasura* recolector = inicializar_recolector();
 
     TABLE tabla_main = {HIGHT, WIDTH, {{0}}};
     init_table(&tabla_main);
@@ -20,18 +18,13 @@ int main() {
     ocultar_cursor();//se oculta el cursor
 
 
-    for(int i=0;i<25;i++){
+    for(int i=0;i<90;i++){
         mover_cursor(1,0);
+        gravity(&tabla_main, &piece_main);
         draw(&tabla_main, &piece_main);
         mover_figura(&piece_main, &tabla_main);
         Sleep(150);
     }
-    //while (game_over()==false);
-
-    // Liberar memoria y recolectar basura
-    recolectar_basura(recolector);
-    liberar_recolector(recolector);
     
     return 0;
 }
-

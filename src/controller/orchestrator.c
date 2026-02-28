@@ -5,7 +5,7 @@
 int check_colision(TABLE* t, PIECE* p){
     int colision = FALSE;
     for(int i = 0; i < p ->size; i++){
-        if(p->blocks[i].x < 0 || p->blocks[i].x >= t->width || p->blocks[i].y < 0 || p->blocks[i].y >= t->hight){
+        if(p->blocks[i].x <= 0 || p->blocks[i].x >= t->width || p->blocks[i].y <= 0 || p->blocks[i].y >= t->hight){
             return TRUE;
         }
     }
@@ -24,6 +24,7 @@ int check_colision(TABLE* t, PIECE* p){
 int move_simple(PIECE* p, int add_or_subs, TABLE* t, int cardinality){
     PIECE temp = *p;
 
+    // 1. Movemos el clon (este for tuyo está perfecto)
     for(int i = 0; i < p ->size;i++){
         if(cardinality == HORIZONTAL){
             temp.blocks[i].x += add_or_subs;
@@ -31,18 +32,15 @@ int move_simple(PIECE* p, int add_or_subs, TABLE* t, int cardinality){
             temp.blocks[i].y += add_or_subs;
         }
     }
+
+    // 2. Checamos si el clon chocó
     if(check_colision(t, &temp) == TRUE){
-        return FALSE;
-    }else{
-        for(int i = 0; i < p ->size;i++){
-            if(cardinality == VERTICAL){
-                p->blocks[i].x += add_or_subs;
-            }else{
-                p->blocks[i].y += add_or_subs;
-            }
-        }
+        return FALSE; // Chocó, abortamos misión
+    } else {
+        *p = temp;    // ¡Magia! Pisamos la pieza vieja con el clon validado
     }
-    return TRUE;
+    
+    return TRUE; // Éxito
 }
 
 int move_piece_in_table(PIECE* p, int direction, TABLE* t){
@@ -93,9 +91,9 @@ int rotate_piece_with_verification(PIECE* p, int direction, TABLE* t){
 }
 
 void delete_rows(TABLE* t){
-    for(int i = 0; i < t->hight; i++){
+    for(int i = 1; i < t->hight - 1; i++){
         int full_row = TRUE;
-        for(int j = 0; j < t->width; j++){
+        for(int j = 1; j < t->width - 1; j++){
             if(t->table[i][j] == 0){
                 full_row = FALSE;
                 break;
@@ -116,8 +114,8 @@ void delete_rows(TABLE* t){
 
 void lock_piece(TABLE* t, PIECE* p){
     for(int i = 0; i < p->size; i++){
-        int x = p->blocks[i].x;
-        int y = p->blocks[i].y;
+        int x = p->blocks[i].y;
+        int y = p->blocks[i].x;
         t->table[x][y] = 1;
     }
     delete_rows(t);

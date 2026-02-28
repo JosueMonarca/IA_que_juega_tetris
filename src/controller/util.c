@@ -92,14 +92,13 @@ void gravity(TABLE* t, PIECE* p){
 
 void draw(TABLE* t, PIECE* p) {
     // Se llama a la funcion gravity para determinar la posicion de las figuras
-    gravity(t, p);
     // Recorrer el tablero
     for (int i = 0; i < t->hight;i++){
         for(int j = 0; j < t->width; j++){
             // Verificar si la posición actual es parte de la figura
             bool es_parte_de_la_figura = false;
             for (int k = 0; k < p->size; k++) {
-                if (p->blocks[k].x == i && p->blocks[k].y == j) {
+                if (p->blocks[k].x == j && p->blocks[k].y == i) {
                     es_parte_de_la_figura = true;
                     break;
                 }
