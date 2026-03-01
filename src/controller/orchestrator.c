@@ -1,11 +1,12 @@
 #include "../../include/ORCHESTRATOR.h"
 #include "../../include/TABLE.h"
 #include "../../include/PIECE.h"
+#include <stdbool.h>
 
 int check_colision(TABLE* t, PIECE* p){
     int colision = FALSE;
     for(int i = 0; i < p ->size; i++){
-        if(p->blocks[i].x < 0 || p->blocks[i].x >= t->width || p->blocks[i].y < 0 || p->blocks[i].y >= t->hight){
+        if(p->blocks[i].x <= 0 || p->blocks[i].x >= t->width || p->blocks[i].y <= 0 || p->blocks[i].y >= t->hight){
             return TRUE;
         }
     }
@@ -13,7 +14,7 @@ int check_colision(TABLE* t, PIECE* p){
     for (int i = 0; i < p -> size; i++) {
         int x = p->blocks[i].x;
         int y = p->blocks[i].y;
-        if (t->table[x][y] != 0) {
+        if (t->table[y][x] == 1) {
             colision = TRUE;
             break;
         }
@@ -32,16 +33,11 @@ int move_simple(PIECE* p, int add_or_subs, TABLE* t, int cardinality){
         }
     }
     if(check_colision(t, &temp) == TRUE){
-        return FALSE;
-    }else{
-        for(int i = 0; i < p ->size;i++){
-            if(cardinality == HORIZONTAL){
-                p->blocks[i].x += add_or_subs;
-            }else{
-                p->blocks[i].y += add_or_subs;
-            }
-        }
+        return FALSE; 
+    } else {
+        *p = temp;
     }
+    
     return TRUE;
 }
 
@@ -92,13 +88,13 @@ int rotate_piece_with_verification(PIECE* p, int direction, TABLE* t){
     }
 }
 
-void delete_rows(TABLE* t){
-    for(int i = 0; i < t->hight; i++){
+bool delete_rows(TABLE* t){
+    for(int i = 1; i < t->hight - 1; i++){
         int full_row = TRUE;
-        for(int j = 0; j < t->width; j++){
+        for(int j = 1; j < t->width - 1; j++){
             if(t->table[i][j] == 0){
                 full_row = FALSE;
-                break;
+                return false;
             }
         }
         if(full_row == TRUE){
@@ -112,15 +108,15 @@ void delete_rows(TABLE* t){
             }
         }
     }
+    return true;
 }
 
 void lock_piece(TABLE* t, PIECE* p){
     for(int i = 0; i < p->size; i++){
         int x = p->blocks[i].x;
         int y = p->blocks[i].y;
-        t->table[x][y] = 1;
+        t->table[y][x] = 1;
     }
-    delete_rows(t);
 }
 
 void set_piece_position(PIECE* p, int x, int rotacion){
@@ -131,4 +127,13 @@ void set_piece_position(PIECE* p, int x, int rotacion){
     for(int i = 0; i < rotacion; i++){
         rotate_piece(p, ROTATE_RIGHT);
     }
+}
+
+bool game_over(TABLE* t){
+    for (int i = 1; i < t->width - 1; i++){
+        if(t->table[1][i] == 1){
+            return true; // Si hay un bloque en la segunda fila, el juego termina
+        }
+    }
+    return false;
 }

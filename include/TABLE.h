@@ -10,4 +10,6 @@ typedef struct
     int table[HIGHT][WIDTH];
 }TABLE;
 
+void init_table(TABLE* t);
+
 #endif
