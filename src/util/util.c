@@ -11,13 +11,12 @@
 #define MAX 7
 #define MIN 1
 
-int generate_random_number() {
-    srand(time(NULL)); // Inicializar la semilla para números aleatorios
-    return (rand() % (MAX - MIN + 1)) + MIN; // Generar un número entre MIN y MAX
+int generate_random_number(int min, int max) {
+    return (rand() % (max - min + 1)) + min; // Generar un número entre min y max
 }
 
 PIECE generate_piece(){
-    switch (generate_random_number())
+    switch (generate_random_number(MIN, MAX))
     {
     case 1: return piece_C; break;
     case 2: return piece_P; break;

@@ -11,7 +11,7 @@
 
 int main() {
     int score = 0;
-
+    
     TABLE tabla_main = {HIGHT, WIDTH, {{0}}};
     init_table(&tabla_main);
 
@@ -25,7 +25,7 @@ int main() {
         if(delete_rows(&tabla_main)){score++;}
         draw_gamePlay(&tabla_main, &piece_main);
         mover_figura(&piece_main, &tabla_main);
-        Sleep(150);
+        Sleep(100);
     }
 
     end_gamePlay(score);

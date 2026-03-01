@@ -5,13 +5,14 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <windows.h>
+#include <time.h>
 
 void gravity(TABLE* t, PIECE* p){
     //se mueve el c hacia abajo
     if (move_piece_in_table(p, DOWN, t) == FALSE){
         lock_piece(t, p);
         *p = generate_piece();
-        set_piece_position(p,generate_random_number(), 0);
+        set_piece_position(p,generate_random_number(4, t->width - 4), 0);
     }
 }
 
@@ -67,6 +68,7 @@ void ocultar_cursor() {
 }
 
 void init_gamePlay(PIECE* piece_main) {
+    srand(time(NULL)); // Inicializar la semilla para números aleatorios
     system("cls"); 
     set_piece_position(piece_main, 1, 0);
     ocultar_cursor();//se oculta el cursor

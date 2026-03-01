@@ -7,7 +7,7 @@
 int conv_seg_min(int segundos,int minutos, int operacion);
 
 // se define una funcion para numeros aleatoris
-int generate_random_number();
+int generate_random_number(int min, int max);
 
 // se define la funcion para generar piezas aleatorias
 PIECE generate_piece();
