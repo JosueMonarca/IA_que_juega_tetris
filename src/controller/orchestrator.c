@@ -1,6 +1,7 @@
 #include "../../include/ORCHESTRATOR.h"
 #include "../../include/TABLE.h"
 #include "../../include/PIECE.h"
+#include <stdbool.h>
 
 int check_colision(TABLE* t, PIECE* p){
     int colision = FALSE;
@@ -87,13 +88,13 @@ int rotate_piece_with_verification(PIECE* p, int direction, TABLE* t){
     }
 }
 
-void delete_rows(TABLE* t){
+bool delete_rows(TABLE* t){
     for(int i = 1; i < t->hight - 1; i++){
         int full_row = TRUE;
         for(int j = 1; j < t->width - 1; j++){
             if(t->table[i][j] == 0){
                 full_row = FALSE;
-                break;
+                return false;
             }
         }
         if(full_row == TRUE){
@@ -107,6 +108,7 @@ void delete_rows(TABLE* t){
             }
         }
     }
+    return true;
 }
 
 void lock_piece(TABLE* t, PIECE* p){
@@ -115,7 +117,6 @@ void lock_piece(TABLE* t, PIECE* p){
         int y = p->blocks[i].y;
         t->table[y][x] = 1;
     }
-    delete_rows(t);
 }
 
 void set_piece_position(PIECE* p, int x, int rotacion){
@@ -126,4 +127,13 @@ void set_piece_position(PIECE* p, int x, int rotacion){
     for(int i = 0; i < rotacion; i++){
         rotate_piece(p, ROTATE_RIGHT);
     }
+}
+
+bool game_over(TABLE* t){
+    for (int i = 1; i < t->width - 1; i++){
+        if(t->table[1][i] == 1){
+            return true; // Si hay un bloque en la segunda fila, el juego termina
+        }
+    }
+    return false;
 }

@@ -6,9 +6,6 @@
 //se definen las funciones de tiempo
 int conv_seg_min(int segundos,int minutos, int operacion);
 
-//se define la funcion para recargar la pantalla
-void draw(TABLE* t, PIECE* p);
-
 // se define una funcion para numeros aleatoris
 int generate_random_number();
 

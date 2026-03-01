@@ -1,4 +1,9 @@
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 final String ROOT = System.getProperty("user.dir");
 final String EXECUTABLE_NAME = "tetris.exe";
@@ -27,11 +32,18 @@ void main(String[] args) {
             yield  mediatorCommand(comando, os, ROOT, FLAG);
         }
         case "CA" -> {
-            IO.println("Compilando todos los archivos...");
-            String comando = os.equals("cmd.exe")
-                ? "gcc " + CONTROLLER_PATH + EVERY_FILES_C + VIEW_PATH + EVERY_FILES_C + " -o " + EXECUTABLE_NAME
-                : "gcc $(find src -name \"*.c\") -o " + EXECUTABLE_NAME;
-            yield  mediatorCommand(comando, os, ROOT, FLAG);
+            IO.println("Buscando y compilando todos los archivos .c recursivamente...");
+                
+            String todosLosArchivosC = obtenerArchivosCRecursivos("src"); 
+
+            if (todosLosArchivosC.isEmpty()) {
+                IO.println("No se encontraron archivos .c para compilar.");
+                yield -1;
+            }
+        
+            String comando = "gcc " + todosLosArchivosC + " -o " + EXECUTABLE_NAME;
+
+            yield mediatorCommand(comando, os, ROOT, FLAG);
         }
         default  -> {
             IO.println("Comando no reconocido: " + args[0]);
@@ -70,5 +82,18 @@ int mediatorCommand (String command, String os, String directory,String flag){
         return runCommand(command, os, directory, flag);
     } catch ( IOException | InterruptedException _) {
         return -1;
+    }
+}
+
+String obtenerArchivosCRecursivos(String directorioRaiz) {
+    try (Stream<Path> paths = Files.walk(Paths.get(directorioRaiz))) {
+        return paths
+            .filter(Files::isRegularFile)
+            .filter(path -> path.toString().endsWith(".c"))
+            .map(Path::toString)
+            .collect(Collectors.joining(" "));
+    } catch (Exception e) {
+        System.out.println("Error al escanear los archivos: " + e.getMessage());
+        return "";
     }
 }
