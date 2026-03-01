@@ -83,7 +83,6 @@ void gravity(TABLE* t, PIECE* p){
     //se mueve el c hacia abajo
     if (move_piece_in_table(p, DOWN, t) == FALSE){
         lock_piece(t, p);
-        delete_rows(t);
         *p = generate_piece();
         set_piece_position(p,generate_random_number(), 0);
     }
@@ -114,4 +113,13 @@ void draw(TABLE* t, PIECE* p) {
             }
         }printf("\n");
     }printf("\n");
+}
+
+bool game_over(TABLE* t){
+    for (int i = 1; i < t->width - 1; i++){
+        if(t->table[1][i] == 1){
+            return true; // Si hay un bloque en la segunda fila, el juego termina
+        }
+    }
+    return false;
 }

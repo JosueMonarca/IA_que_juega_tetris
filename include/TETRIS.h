@@ -31,4 +31,6 @@ void mover_cursor(int x, int y);
 
 extern int rota;
 
+bool game_over(TABLE* t);
+
 #endif // TETRIS_H

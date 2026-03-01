@@ -18,7 +18,8 @@ int main() {
     ocultar_cursor();//se oculta el cursor
 
 
-    for(int i=0;i<90;i++){
+    while (!game_over(&tabla_main))
+    {
         mover_cursor(1,0);
         gravity(&tabla_main, &piece_main);
         draw(&tabla_main, &piece_main);

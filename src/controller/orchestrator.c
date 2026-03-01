@@ -13,7 +13,7 @@ int check_colision(TABLE* t, PIECE* p){
     for (int i = 0; i < p -> size; i++) {
         int x = p->blocks[i].x;
         int y = p->blocks[i].y;
-        if (t->table[x][y] != 0) {
+        if (t->table[y][x] == 1) {
             colision = TRUE;
             break;
         }
@@ -24,7 +24,6 @@ int check_colision(TABLE* t, PIECE* p){
 int move_simple(PIECE* p, int add_or_subs, TABLE* t, int cardinality){
     PIECE temp = *p;
 
-    // 1. Movemos el clon (este for tuyo está perfecto)
     for(int i = 0; i < p ->size;i++){
         if(cardinality == HORIZONTAL){
             temp.blocks[i].x += add_or_subs;
@@ -32,15 +31,13 @@ int move_simple(PIECE* p, int add_or_subs, TABLE* t, int cardinality){
             temp.blocks[i].y += add_or_subs;
         }
     }
-
-    // 2. Checamos si el clon chocó
     if(check_colision(t, &temp) == TRUE){
-        return FALSE; // Chocó, abortamos misión
+        return FALSE; 
     } else {
-        *p = temp;    // ¡Magia! Pisamos la pieza vieja con el clon validado
+        *p = temp;
     }
     
-    return TRUE; // Éxito
+    return TRUE;
 }
 
 int move_piece_in_table(PIECE* p, int direction, TABLE* t){
@@ -114,9 +111,9 @@ void delete_rows(TABLE* t){
 
 void lock_piece(TABLE* t, PIECE* p){
     for(int i = 0; i < p->size; i++){
-        int x = p->blocks[i].y;
-        int y = p->blocks[i].x;
-        t->table[x][y] = 1;
+        int x = p->blocks[i].x;
+        int y = p->blocks[i].y;
+        t->table[y][x] = 1;
     }
     delete_rows(t);
 }
