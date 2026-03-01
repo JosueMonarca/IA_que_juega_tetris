@@ -88,13 +88,14 @@ int rotate_piece_with_verification(PIECE* p, int direction, TABLE* t){
     }
 }
 
-bool delete_rows(TABLE* t){
+int delete_rows(TABLE* t){
+    int deleted_rows = 0;
     for(int i = 1; i < t->hight - 1; i++){
         int full_row = TRUE;
         for(int j = 1; j < t->width - 1; j++){
             if(t->table[i][j] == 0){
                 full_row = FALSE;
-                return false;
+                break;
             }
         }
         if(full_row == TRUE){
@@ -103,12 +104,14 @@ bool delete_rows(TABLE* t){
                     t->table[k][l] = t->table[k-1][l];
                 }
             }
-            for(int l = 0; l < t->width; l++){
+            for(int l = 1; l < t->width-1; l++){
                 t->table[0][l] = 0;
             }
+            deleted_rows++;
+            i--;
         }
     }
-    return true;
+    return deleted_rows;
 }
 
 void lock_piece(TABLE* t, PIECE* p){

@@ -22,10 +22,10 @@ int main() {
     while (!game_over(&tabla_main))
     {
         mover_cursor(1,0);
-        if(delete_rows(&tabla_main)){score++;}
+        score += delete_rows(&tabla_main);
         draw_gamePlay(&tabla_main, &piece_main);
         mover_figura(&piece_main, &tabla_main);
-        Sleep(100);
+        Sleep(10);
     }
 
     end_gamePlay(score);
