@@ -12,7 +12,7 @@ void gravity(TABLE* t, PIECE* p){
     if (move_piece_in_table(p, DOWN, t) == FALSE){
         lock_piece(t, p);
         *p = generate_piece();
-        set_piece_position(p,generate_random_number(4, t->width - 4), 0);
+        set_piece_position(p,generate_random_number(4, t->width - 5), 0);
     }
 }
 
